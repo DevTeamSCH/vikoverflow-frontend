@@ -1,0 +1,10 @@
+{
+  "extends": "fbjs",
+  "globals": {
+    "document": false
+  },
+  "rules": {
+    "max-len": [1, 100, 4],
+    "jsx-quotes": ["error", "prefer-single"],
+    }
+}
