@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PageLayout from './PageLayout';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <PageLayout>
         <h1>Hello World</h1>
-      </div>
+      </PageLayout>
     );
   }
 }
