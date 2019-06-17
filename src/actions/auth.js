@@ -5,8 +5,7 @@ export const getUserData = () => (
 
     async (dispatch) => {
         try{
-            let user = await axios.get('/api/v1/accounts/me')
-            
+            let user = await axios.get('/api/v1/accounts/me');
 
             dispatch({
                 type: GET_USER,
