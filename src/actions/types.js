@@ -1,0 +1,1 @@
+export const GET_QUESTIONS = 'get_questions';
