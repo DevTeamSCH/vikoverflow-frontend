@@ -15,9 +15,9 @@ const DesktopMenu = ({user}) => (
     </Menu.Item>
     <Menu.Item>
       { user.id ?
-        <Button as="a" href='/api/v1/logout'>Log out</Button>
+        <Button as='a' href='/api/v1/logout'>Log out</Button>
         :
-        <Button as="a" href='/api/v1/login/authsch'>Log in</Button>
+        <Button as='a' href='/api/v1/login/authsch'>Log in</Button>
       }
     </Menu.Item>
   </Menu>
