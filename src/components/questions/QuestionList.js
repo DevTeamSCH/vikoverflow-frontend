@@ -1,5 +1,6 @@
 import QuestionListQuestion from "./QuestionListQuestion";
 import React from "react";
+import {Container} from "semantic-ui-react";
 
 class QuestionList extends React.Component {
   componentDidMount() {
@@ -8,11 +9,11 @@ class QuestionList extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         {this.props.questions.map((question, index) => (
           <QuestionListQuestion key={index} {...question} />
         ))}
-      </div>
+      </Container>
     )
   }
 }

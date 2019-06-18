@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.green-text {
+  color: #21ba45;
+}
+
+.green-border {
+  border: 1px solid #21ba45 !important;
+}
