@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import QuestionListContainer from '../containers/QuestionListContainer';
 
 export const HomePage = () => {
   return (
-    <div>
-      Hello Home
-    </div>
-  )
-}
+    <QuestionListContainer />
+  );
+};

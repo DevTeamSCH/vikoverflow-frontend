@@ -7,6 +7,6 @@ export const getQuestionList = () => (
     dispatch({
       type: GET_QUESTIONS,
       questions: questions.data
-    })
+    });
   }
 );

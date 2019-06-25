@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import HomeQuestionsList from "../containers/questions/HomeQuestionList";
 import { HomePage, QuestionsPage, QuestionDetailPage, NewQuestionPage } from '../pages'
 
 
