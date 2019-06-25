@@ -2,9 +2,9 @@ import React from 'react';
 import {Container, Grid, GridColumn, Segment} from 'semantic-ui-react';
 import Votes from './Votes';
 
-const QuestionListQuestion = ({id, title, answerd, answer_count, owner, user_vote, vote_count, vote_changed}) => {
-  let cls = answerd ? 'green-text' : '';
-  let segmentCls = answerd ? 'green-border' : '';
+const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vote, vote_count, vote_changed}) => {
+  let cls = answered ? 'green-text' : '';
+  let segmentCls = answered ? 'green-border' : '';
   return (
     <Segment>
       <Grid columns={3} divided verticalAlign={'middle'}>
