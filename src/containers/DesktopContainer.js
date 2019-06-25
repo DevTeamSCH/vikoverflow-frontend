@@ -6,8 +6,8 @@ import { getUserData } from '../actions';
 
 class DesktopContainer extends Component {
 
-  componentDidMount(){
-      this.props.getUserData();
+  componentDidMount() {
+    this.props.getUserData();
   }
 
   render() {
@@ -21,6 +21,6 @@ class DesktopContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(mapStateToProps, {getUserData})(DesktopContainer);
