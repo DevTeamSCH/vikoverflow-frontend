@@ -7,10 +7,10 @@ export const getUserData = () => (
     try {
       let profile = await axios.get('/api/v1/accounts/me');
 
-      const {id, user: {username, email, first_name, last_name, is_staff}} = profile.data;
+      const {id, full_name} = profile.data;
       dispatch({
         type: GET_USER,
-        payload: { id, username, email, first_name, last_name, is_staff },
+        payload: { id, full_name },
       });
 
     } catch (e) {
