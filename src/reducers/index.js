@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import {QuestionsReducer} from "./QuestionsReducer";
 
+import { UserReducer } from './UserReducer';
+
 const rootReducer = combineReducers({
-  user: [],
+  user: UserReducer,
   questions: QuestionsReducer,
 });
 
