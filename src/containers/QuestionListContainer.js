@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import QuestionList from '../components/questions/QuestionList';
-import {getQuestionList} from '../actions';
+import {changeQuestionVote, getQuestionList} from '../actions';
 
 class QuestionListContainer extends Component {
   
   componentDidMount() {
     this.props.getQuestionList();
   }
-  
+
   render() {
     return (
-      <QuestionList questions={this.props.questions} />
+      <QuestionList questions={this.props.questions} 
+        vote_changed={(id, new_vote) => this.props.changeQuestionVote(id, new_vote)
+          .then(() => this.props.getQuestionList())} />
     );
   }
 }
@@ -23,4 +25,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getQuestionList})(QuestionListContainer);
+export default connect(mapStateToProps, {getQuestionList, changeQuestionVote})(QuestionListContainer);
