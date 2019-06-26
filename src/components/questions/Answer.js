@@ -8,7 +8,7 @@ const Answer = ({id, text, owner, is_accepted, user_vote, vote_count, comments, 
     <Grid columns={2}>
       <GridRow>
         <GridColumn width={1} textAlign={'center'}>
-          <Votes user_vote={user_vote} vote_count={vote_count} vote_changed={answer_vote_changed} />
+          <Votes user_vote={user_vote} vote_count={vote_count} vote_changed={(new_vote) => answer_vote_changed(id, new_vote)} />
           {is_accepted ? <Icon color={'green'} name={'check'} size={'large'}/> : ''}
         </GridColumn>
         <GridColumn width={15}>

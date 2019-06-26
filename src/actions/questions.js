@@ -8,14 +8,12 @@ export const getQuestionList = () =>
       type: GET_QUESTIONS,
       questions: questions.data,
     });
-  }
-;
+  };
 
 export const changeQuestionVote = (id, new_vote) => 
   async (dispatch) => {
     await axios.put(`/api/v1/questions/${id}/vote/`, {'user_vote': new_vote});
-  }
-;
+  };
 
 export const getQuestion = (id) =>
   async (dispatch) => {
@@ -24,4 +22,14 @@ export const getQuestion = (id) =>
       type: GET_QUESTION,
       question: question.data,
     });
+  };
+
+export const changeAnswerVote = (id, new_vote) =>
+  async (dispatch) => {
+    await axios.put(`/api/v1/answers/${id}/vote/`, {'user_vote': new_vote});
+  };
+
+export const changeCommentVote = (id, new_vote) =>
+  async (dispatch) => {
+    await axios.put(`/api/v1/comments/${id}/vote/`, {'user_vote': new_vote});
   };

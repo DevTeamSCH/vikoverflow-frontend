@@ -8,7 +8,7 @@ const CommentList = ({comments, comment_vote_changed}) => (
     {comments.map(({id, owner, text, user_vote, vote_count}) => (
       <Grid columns={2} key={id}>
         <GridColumn width={1}>
-          <Votes user_vote={user_vote} vote_count={vote_count} vote_changed={comment_vote_changed} />
+          <Votes user_vote={user_vote} vote_count={vote_count} vote_changed={(new_vote) => comment_vote_changed(id, new_vote)} />
         </GridColumn>
         <GridColumn width={14}>
           <Comment>

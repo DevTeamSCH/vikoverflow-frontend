@@ -11,7 +11,7 @@ const Question = ({id, title, answers, comments, owner, vote_count, user_vote, t
     <Grid columns={2}>
       <GridRow>
         <GridColumn width={1}>
-          <Votes vote_count={vote_count} user_vote={user_vote} vote_changed={question_vote_changed} />
+          <Votes vote_count={vote_count} user_vote={user_vote} vote_changed={(new_vote) => question_vote_changed(id, new_vote)} />
         </GridColumn>
         <GridColumn width={15}>
           <p>{text}</p>
