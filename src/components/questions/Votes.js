@@ -8,7 +8,7 @@ const Votes = ({vote_count, user_vote, vote_changed}) => {
   let downVote = user_vote === 'down' ? 'none' : 'down';
 
   return (
-    <Container>
+    <Container textAlign={'center'}>
       <Icon color={upColor} name={'angle up'} size={'big'} fitted link onClick={() => vote_changed(upVote)} />
       <Container>{vote_count}</Container>
       <Icon color={downColor} name={'angle down'} size={'big'} fitted link onClick={() => vote_changed(downVote)} />

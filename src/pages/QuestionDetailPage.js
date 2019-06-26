@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import QuestionContainer from '../containers/QuestionContainer';
 
 export const QuestionDetailPage = ({match}) => {
   return (
-    <div>
-      Hello Question detail id: {match.params.id}
-    </div>
-  )
-}
+    <QuestionContainer id={match.params.id} />
+  );
+};

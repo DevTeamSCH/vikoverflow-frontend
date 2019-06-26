@@ -1,4 +1,4 @@
-import {GET_QUESTIONS} from "../actions/types";
+import {GET_QUESTIONS} from '../actions/types';
 
 const INITIAL = [];
 

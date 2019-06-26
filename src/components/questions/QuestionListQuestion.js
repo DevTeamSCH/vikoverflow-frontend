@@ -8,7 +8,7 @@ const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vo
   return (
     <Segment>
       <Grid columns={3} divided verticalAlign={'middle'}>
-        <GridColumn width={1} textAlign={'center'}>
+        <GridColumn width={1}>
           <Votes user_vote={user_vote} vote_count={vote_count} vote_changed={vote_changed}/>
         </GridColumn>
         <GridColumn width={2} textAlign={'center'}>
