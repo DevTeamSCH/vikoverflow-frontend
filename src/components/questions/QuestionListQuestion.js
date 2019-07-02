@@ -19,7 +19,7 @@ const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vo
         </GridColumn>
         <GridColumn width={13} onClick={() => history.push(`/q/${id}`)} style={{'cursor': 'pointer'}}>
           <p>{title}</p>
-          <p>Created by  {owner.full_name}</p>
+          <p>Created by  {owner ? owner.full_name : 'Anonymous user'}</p>
         </GridColumn>
       </Grid>
     </Segment>

@@ -14,7 +14,7 @@ const CommentList = ({comments, comment_vote_changed}) => (
           <Comment>
             <Comment.Avatar src={'https://react.semantic-ui.com/images/avatar/small/elliot.jpg'} />
             <Comment.Content>
-              <Comment.Author as={'a'}>{owner.full_name}</Comment.Author>
+              <Comment.Author as={'a'}>{owner ? owner.full_name : 'Anonymous user'}</Comment.Author>
               <Comment.Metadata><div>Just now</div></Comment.Metadata>
               <Comment.Text>{text}</Comment.Text>
             </Comment.Content>
