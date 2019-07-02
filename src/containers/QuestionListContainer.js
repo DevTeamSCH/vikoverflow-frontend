@@ -13,7 +13,7 @@ class QuestionListContainer extends Component {
     return (
       <QuestionList questions={this.props.questions} 
         vote_changed={(id, new_vote) => this.props.changeQuestionVote(id, new_vote)
-          .then(() => this.props.getQuestionList())} />
+          .then(() => this.props.getQuestionList())} history={this.props.history} />
     );
   }
 }

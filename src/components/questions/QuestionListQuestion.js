@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Grid, GridColumn, Segment} from 'semantic-ui-react';
 import Votes from './Votes';
 
-const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vote, vote_count, vote_changed}) => {
+const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vote, vote_count, vote_changed, history}) => {
   let cls = answered ? 'green-text' : '';
   let segmentCls = answered ? 'green-border' : '';
   return (
@@ -17,7 +17,7 @@ const QuestionListQuestion = ({id, title, answered, answer_count, owner, user_vo
             <small className={cls}>answers</small>
           </Segment>
         </GridColumn>
-        <GridColumn width={13}>
+        <GridColumn width={13} onClick={() => history.push(`/q/${id}`)} style={{'cursor': 'pointer'}}>
           <p>{title}</p>
           <p>Created by  {owner.full_name}</p>
         </GridColumn>
