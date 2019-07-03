@@ -20,7 +20,7 @@ const Question = ({id, title, answers, comments, owner, vote_count, user_vote, t
       <GridRow>
         <GridColumn width={2}/>
         <GridColumn width={14}>
-          <CommentList comments={comments} comment_vote_changed={comment_vote_changed} />
+          <CommentList comments={comments} comment_vote_changed={comment_vote_changed} question id={id}/>
         </GridColumn>
       </GridRow>
     </Grid>

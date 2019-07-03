@@ -18,7 +18,7 @@ const Answer = ({id, text, owner, is_accepted, user_vote, vote_count, comments, 
       <GridRow>
         <GridColumn width={2}/>
         <GridColumn width={14}>
-          <CommentList comments={comments} comment_vote_changed={comment_vote_changed} />
+          <CommentList comments={comments} comment_vote_changed={comment_vote_changed} answer id={id}/>
         </GridColumn>
       </GridRow>
     </Grid>
