@@ -3,7 +3,7 @@ import {
   CREATE_QUESTION_ANSWER,
   CREATE_QUESTION_COMMENT,
   GET_QUESTION,
-  GET_QUESTIONS
+  GET_QUESTIONS,
 } from './types';
 import axios from './session';
 

@@ -3,9 +3,10 @@ import {Container, Grid, GridColumn, GridRow, Header} from 'semantic-ui-react';
 import Votes from './Votes';
 import Answer from './Answer';
 import CommentList from './CommentList';
-import AnswerFormContainer from "../../containers/AnswerFormContainer";
+import AnswerFormContainer from '../../containers/AnswerFormContainer';
 
-const Question = ({id, title, answers, comments, owner, vote_count, user_vote, text, tags, question_vote_changed, answer_vote_changed, comment_vote_changed}) => (
+const Question = ({id, title, answers, comments, owner, vote_count, user_vote, text, tags, question_vote_changed,
+  answer_vote_changed, comment_vote_changed}) => (
   <Container>
     <Header as={'h1'}>{title}</Header>
     <hr />
