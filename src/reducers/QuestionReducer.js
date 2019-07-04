@@ -1,4 +1,4 @@
-import {CREATE_ANSWER_COMMENT, CREATE_QUESTION_COMMENT, GET_QUESTION} from '../actions/types';
+import {CREATE_ANSWER_COMMENT, CREATE_QUESTION_ANSWER, CREATE_QUESTION_COMMENT, GET_QUESTION} from '../actions/types';
 
 const INITIAL = {};
 
@@ -23,6 +23,11 @@ export const QuestionReducer = (state = INITIAL, action) => {
       return {
         ...state,
         answers: answers,
+      };
+    case CREATE_QUESTION_ANSWER:
+      return {
+        ...state,
+        answers: [...state.answers, action.answer],
       };
     default:
       return state;

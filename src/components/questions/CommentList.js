@@ -31,7 +31,7 @@ const CommentList = ({comments, comment_vote_changed, question, answer, id}) => 
       ))}
       {commentFormVisible ?
         <CommentFormContainer question={question} answer={answer} id={id} onFormDone={() => setCommentFormVisible(false)}/> :
-        <Button onClick={() => setCommentFormVisible(true)}>New comment</Button>
+        <Button style={{'marginTop': '10px'}} onClick={() => setCommentFormVisible(true)}>New comment</Button>
       }
     </Comment.Group>
   );

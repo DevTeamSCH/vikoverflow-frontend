@@ -3,6 +3,7 @@ import {Container, Grid, GridColumn, GridRow, Header} from 'semantic-ui-react';
 import Votes from './Votes';
 import Answer from './Answer';
 import CommentList from './CommentList';
+import AnswerFormContainer from "../../containers/AnswerFormContainer";
 
 const Question = ({id, title, answers, comments, owner, vote_count, user_vote, text, tags, question_vote_changed, answer_vote_changed, comment_vote_changed}) => (
   <Container>
@@ -29,6 +30,9 @@ const Question = ({id, title, answers, comments, owner, vote_count, user_vote, t
     {answers.map((answer) => (
       <Answer {...answer} comment_vote_changed={comment_vote_changed} answer_vote_changed={answer_vote_changed} key={answer.id} />
     ))}
+    <hr />
+    <h3>New answer</h3>
+    <AnswerFormContainer />
   </Container>
 );
 

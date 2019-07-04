@@ -1,4 +1,10 @@
-import {CREATE_ANSWER_COMMENT, CREATE_QUESTION_COMMENT, GET_QUESTION, GET_QUESTIONS} from './types';
+import {
+  CREATE_ANSWER_COMMENT,
+  CREATE_QUESTION_ANSWER,
+  CREATE_QUESTION_COMMENT,
+  GET_QUESTION,
+  GET_QUESTIONS
+} from './types';
 import axios from './session';
 
 export const getQuestionList = () => 
@@ -51,5 +57,16 @@ export const addAnswerComment = (answer_id, comment_text, anonymous) =>
       type: CREATE_ANSWER_COMMENT,
       answer_id: answer_id,
       comment: comment.data,
+    });
+  };
+
+
+export const addQuestionAnswer = (question_id, answer_text, anonymous) =>
+  async (dispatch) => {
+    let answer = await axios.post(`/api/v1/questions/${question_id}/answers/`, {'text': answer_text, 'show_username': !anonymous});
+
+    dispatch({
+      type: CREATE_QUESTION_ANSWER,
+      answer: answer.data,
     });
   };
