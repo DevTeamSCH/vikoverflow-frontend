@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Container, Header, Button, Dropdown } from 'semantic-ui-react';
+import { Form, Container, Header, Button } from 'semantic-ui-react';
 
 const AddQuestionFrom = (props) => {
   const [title, setTitle] = useState('');
