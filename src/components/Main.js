@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import AddQuestionForm from './forms/AddQuestionForm';
+import AddQuestionContainer from '../containers/AddQuestionContainer';
 
 const Main = () => (
   <Switch>
     <Redirect exact from='/' to='/home' />
     <Route exact path='/home' />
-    <Route path='/q/add' component={AddQuestionForm} />
+    <Route path='/q/add' component={AddQuestionContainer} />
   </Switch>
 );
 
