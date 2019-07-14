@@ -7,7 +7,10 @@ class AddQuestionContainer extends Component {
   render() {
     return (
       <div>
-        <AddQuestionForm  tags={this.props.tags} addQuestion={(question) => this.props.addQuestion(question)} />             
+        <AddQuestionForm
+          tags={this.props.tags}
+          addQuestion={(question) => this.props.addQuestion(question)}
+        />             
       </div>
     );
   }
