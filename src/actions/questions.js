@@ -8,7 +8,7 @@ export const addQuestion = ({title, details, tags}) => (
     try {
       const response = await axios.post('/api/v1/questions/', { title, text: details, tags });
 
-      if (response.status > 200 && response.status < 300) {
+      if (response.status >= 200 && response.status < 300) {
         dispatch({
           type: ADD_QUESTION,
           payload: response.data,

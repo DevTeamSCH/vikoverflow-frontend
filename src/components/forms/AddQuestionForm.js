@@ -4,9 +4,10 @@ import { Form, Container, Header, Button } from 'semantic-ui-react';
 const AddQuestionFrom = (props) => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(['default']);
 
-  const tagOptions = props.tags;
+  // TODO: get the tags from the backend
+  const [tagOptions, setTagOptions] = useState([{text:'option1', value:'option1'}]);
   
   return (
     <Container>
@@ -29,9 +30,14 @@ const AddQuestionFrom = (props) => {
           multiple
           search
           selection
+          allowAdditions
           options={tagOptions}
           value={tags}
-          onChange={(e) => setTags(e.target.values)}
+          onChange={(e, data) => setTags(data.value)}
+          onAddItem={(event, data) => { /* TODO: Update tags remotely too */
+            setTagOptions([...tagOptions, {text: data.value, value: data.value}]);
+            setTags([...tags, data.value]);
+          }}
         />
         <Button onClick={() => props.addQuestion({title, details, tags})}>Beküld</Button>
       </Form>
