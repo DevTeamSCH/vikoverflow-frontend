@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PageLayout from './PageLayout';
-import Main from './Main';
+import PageLayout from './components/PageLayout';
+import Main from './components/Main';
 
 class App extends Component {
   render() {

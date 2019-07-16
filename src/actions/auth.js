@@ -1,7 +1,7 @@
 import { GET_USER } from './types';
 import axios from './session';
 
-export const getUserData = () => (
+export const getUserData = () => 
 
   async (dispatch) => {
     try {
@@ -14,7 +14,7 @@ export const getUserData = () => (
       });
 
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
-);
+;
