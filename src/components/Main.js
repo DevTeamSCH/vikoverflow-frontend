@@ -1,6 +1,6 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import AddQuestionContainer from '../containers/AddQuestionContainer';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { HomePage, QuestionsPage, NewQuestionPage, QuestionDetailPage } from '../pages';
 
 const Main = () => (
   <Switch>
@@ -9,7 +9,6 @@ const Main = () => (
     <Route exact path='/q/browse' component={QuestionsPage} />
     <Route exact path='/q/new' component={NewQuestionPage} />
     <Route path='/q/:id' component={QuestionDetailPage} />
-    <Route path='/q/add' component={AddQuestionContainer} />
   </Switch>
 );
 

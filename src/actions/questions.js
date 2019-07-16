@@ -4,10 +4,12 @@ import {
   CREATE_QUESTION_COMMENT,
   GET_QUESTION,
   GET_QUESTIONS,
+  ADD_QUESTION,
 } from './types';
 import axios from './session';
+import history from '../history';
 
-export const getQuestionList = () => 
+export const getQuestionList = () =>
   async (dispatch) => {
     let questions = await axios.get('/api/v1/questions');
     dispatch({
@@ -27,32 +29,31 @@ export const getQuestion = (id) =>
 
 export const changeQuestionVote = (id, new_vote) =>
   async (dispatch) => {
-    await axios.put(`/api/v1/questions/${id}/vote/`, {'user_vote': new_vote});
+    await axios.put(`/api/v1/questions/${id}/vote/`, { 'user_vote': new_vote });
   };
 
 export const changeAnswerVote = (id, new_vote) =>
   async (dispatch) => {
-    await axios.put(`/api/v1/answers/${id}/vote/`, {'user_vote': new_vote});
+    await axios.put(`/api/v1/answers/${id}/vote/`, { 'user_vote': new_vote });
   };
 
 export const changeCommentVote = (id, new_vote) =>
   async (dispatch) => {
-    await axios.put(`/api/v1/comments/${id}/vote/`, {'user_vote': new_vote});
+    await axios.put(`/api/v1/comments/${id}/vote/`, { 'user_vote': new_vote });
   };
 
 export const addQuestionComment = (question_id, comment_text, anonymous) =>
   async (dispatch) => {
-    let comment = await axios.post(`/api/v1/questions/${question_id}/comments/`, {'text': comment_text, 'show_username': !anonymous});
+    let comment = await axios.post(`/api/v1/questions/${question_id}/comments/`, { 'text': comment_text, 'show_username': !anonymous });
     dispatch({
       type: CREATE_QUESTION_COMMENT,
       comment: comment.data,
     });
   };
 
-
 export const addAnswerComment = (answer_id, comment_text, anonymous) =>
   async (dispatch) => {
-    let comment = await axios.post(`/api/v1/answers/${answer_id}/comments/`, {'text': comment_text, 'show_username': !anonymous});
+    let comment = await axios.post(`/api/v1/answers/${answer_id}/comments/`, { 'text': comment_text, 'show_username': !anonymous });
     dispatch({
       type: CREATE_ANSWER_COMMENT,
       answer_id: answer_id,
@@ -60,23 +61,20 @@ export const addAnswerComment = (answer_id, comment_text, anonymous) =>
     });
   };
 
-
 export const addQuestionAnswer = (question_id, answer_text, anonymous) =>
   async (dispatch) => {
-    let answer = await axios.post(`/api/v1/questions/${question_id}/answers/`, {'text': answer_text, 'show_username': !anonymous});
+    let answer = await axios.post(`/api/v1/questions/${question_id}/answers/`, { 'text': answer_text, 'show_username': !anonymous });
 
     dispatch({
       type: CREATE_QUESTION_ANSWER,
       answer: answer.data,
     });
   };
-import history from '../history';
 
-export const addQuestion = ({title, details, tags}) => (
-
+export const addQuestion = (title, details, show_username) => (
   async (dispatch) => {
     try {
-      const response = await axios.post('/api/v1/questions/', { title, text: details, tags });
+      const response = await axios.post('/api/v1/questions/', { title, text: details, show_username });
 
       if (response.status >= 200 && response.status < 300) {
         dispatch({
@@ -90,4 +88,3 @@ export const addQuestion = ({title, details, tags}) => (
     }
   }
 );
-import { ADD_QUESTION } from './types';

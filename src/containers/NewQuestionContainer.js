@@ -3,17 +3,16 @@ import { connect } from 'react-redux';
 import { addQuestion } from '../actions';
 import AddQuestionForm from '../components/forms/AddQuestionForm';
 
-class AddQuestionContainer extends Component {
+class NewQuestionContainer extends Component {
   render() {
     return (
       <div>
         <AddQuestionForm
-          tags={this.props.tags}
-          addQuestion={(question) => this.props.addQuestion(question)}
+          addQuestion={this.props.addQuestion}
         />             
       </div>
     );
   }
 }
 
-export default connect(({tags}) => ({tags}), { addQuestion })(AddQuestionContainer);
+export default connect(() => {}, { addQuestion })(NewQuestionContainer);

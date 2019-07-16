@@ -4,10 +4,10 @@ import { Form, Container, Header, Button } from 'semantic-ui-react';
 const AddQuestionFrom = (props) => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
-  const [tags, setTags] = useState(['default']);
+  const [showUsername, setShowUsername] = useState(false);
 
   // TODO: get the tags from the backend
-  const [tagOptions, setTagOptions] = useState([{text:'option1', value:'option1'}]);
+  // const [tagOptions, setTagOptions] = useState([{text:'option1', value:'option1'}]);
   
   return (
     <Container>
@@ -23,7 +23,12 @@ const AddQuestionFrom = (props) => {
           value={details}
           onChange={(e) => setDetails(e.target.value)}
         />
-        <Form.Dropdown
+        <Form.Checkbox
+          label='Név megjelenítése'
+          value={showUsername}
+          onChange={(e, data) => setShowUsername(data.checked)}
+        />
+        {/* <Form.Dropdown
           label='Címkék:'
           placeholder='Címke'
           fluid
@@ -34,12 +39,12 @@ const AddQuestionFrom = (props) => {
           options={tagOptions}
           value={tags}
           onChange={(e, data) => setTags(data.value)}
-          onAddItem={(event, data) => { /* TODO: Update tags remotely too */
+          onAddItem={(event, data) => { // TODO: Update tags remotely too
             setTagOptions([...tagOptions, {text: data.value, value: data.value}]);
             setTags([...tags, data.value]);
           }}
-        />
-        <Button onClick={() => props.addQuestion({title, details, tags})}>Beküld</Button>
+        /> */}
+        <Button onClick={() => props.addQuestion(title, details, showUsername)}>Beküld</Button>
       </Form>
     </Container>
   );
