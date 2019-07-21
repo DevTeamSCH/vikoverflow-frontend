@@ -12,10 +12,11 @@ class DesktopContainer extends Component {
 
   render() {
     const { children } = this.props;
+    const isLoggedIn = this.props.user.id ? true : false;
     return (
       <Responsive minWidth={768}>
         <DesktopMenu user={this.props.user} />
-        {children}
+        {React.cloneElement(children, { isLoggedIn })}
       </Responsive>
     );
   }
@@ -23,4 +24,4 @@ class DesktopContainer extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps, {getUserData})(DesktopContainer);
+export default connect(mapStateToProps, { getUserData })(DesktopContainer);
