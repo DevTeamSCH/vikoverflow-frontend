@@ -27,7 +27,6 @@ const NoLoginRoutes = () => (
     <Redirect exact from='/' to='/welcome' />
     <Route exact path='/welcome' component={WelcomePage} />
     <Route exact path='/forbidden' component={ForbiddenPage} />
-    <Redirect to='/forbidden' />
   </Switch>
 );
 
