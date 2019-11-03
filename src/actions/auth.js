@@ -1,6 +1,5 @@
 import { GET_USER } from './types';
 import axios from './session';
-import history from '../history';
 
 export const getUserData = () => 
 
