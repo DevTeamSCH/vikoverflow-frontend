@@ -11,14 +11,13 @@ function ForbiddenPage() {
   return <div><h1>Forbidden</h1><Link to='/login'>Back to login page</Link></div>
 }
 
-function App({ user, getUserData: loadUser }) {
-  useEffect(() => { loadUser(); }, []);
-  const loggedIn = typeof user.id === 'number';
+function App({ user, getUserData }) {
+  useEffect(() => { getUserData(); }, []);
   return (
     <Router>
       <Switch>
-        <Route exact path='/'>{loggedIn ? <HomePage /> : <Redirect to='/login' />}</Route>
-        <Route exact path='/login'>{loggedIn ? <Redirect to='/' /> : <LoginPage />}</Route>
+        <Route exact path='/'>{user.id ? <HomePage /> : <Redirect to='/login' />}</Route>
+        <Route exact path='/login'>{user.id ? <Redirect to='/' /> : <LoginPage />}</Route>
         <Route exact path='/forbidden'><ForbiddenPage /></Route>
       </Switch>
     </Router>
