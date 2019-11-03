@@ -1,15 +1,33 @@
-import React, { Component } from 'react';
-import PageLayout from './components/PageLayout';
-import Main from './components/Main';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-class App extends Component {
+import { getUserData } from './actions';
+
+const HomePage = () => (<div><h1>Home</h1><a href='/api/v1/logout'>Logout</a></div>);
+const LoginPage = () => (<div><h1>Login</h1><a href='/api/v1/login/authsch'>Login</a></div>);
+
+function ForbiddenPage() {
+  return <div><h1>Forbidden</h1><Link to='/login'>Back to login page</Link></div>
+}
+
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getUserData();
+  }
+
   render() {
+    const loggedIn = typeof this.props.user.id === 'number';
     return (
-      <PageLayout>
-        <Main />
-      </PageLayout>
+      <Router>
+        <Switch>
+          <Route exact path='/'>{loggedIn ? <HomePage /> : <Redirect to='/login' />}</Route>
+          <Route exact path='/login'>{loggedIn ? <Redirect to='/' /> : <LoginPage />}</Route>
+          <Route exact path='/forbidden'><ForbiddenPage /></Route>
+        </Switch>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect(state => ({ user: state.user }), { getUserData })(App);

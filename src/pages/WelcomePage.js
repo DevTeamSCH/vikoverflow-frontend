@@ -1,12 +1,8 @@
 import React from 'react';
 
-import Welcome from '../components/Welcome';
-
-
-const WelcomePage = () => {
-  return (
-    <Welcome />
-  );
-};
-
-export default WelcomePage;
+export default WelcomePage = () => (
+  <div>
+    <h1>Welcome to VikOverflow pre-release!</h1>
+    <button>Login with authsch</button>
+  </div>
+);

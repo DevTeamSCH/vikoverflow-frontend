@@ -15,11 +15,6 @@ export const getUserData = () =>
       });
 
     } catch (e) {
-      if (e.response) {
-        if (e.response.status === 403) {
-          history.push('/forbidden');
-        }
-      }
       console.log(e);
     }
   }
