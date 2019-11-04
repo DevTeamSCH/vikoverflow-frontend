@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import { Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { connect } from 'react-redux';
 
 import { getUserData } from './actions';
+
+export const history = createBrowserHistory();
 
 const LoginPage = () => (<div><h1>Login</h1><a href='/api/v1/login/authsch'>Login</a></div>);
 
@@ -55,7 +58,7 @@ function ForbiddenPage() {
 function App({ user, getUserData }) {
   useEffect(() => { getUserData(); }, []);
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path='/login'>{user.id ? <Redirect to='/' /> : <LoginPage />}</Route>
         <Route exact path='/forbidden'><ForbiddenPage /></Route>

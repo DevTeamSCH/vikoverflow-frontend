@@ -1,20 +1,22 @@
 import { GET_USER } from './types';
 import axios from './session';
+import { history } from '../App';
 
-export const getUserData = () => 
+export const getUserData = () =>
 
   async (dispatch) => {
     try {
-      let profile = await axios.get('/api/v1/accounts/me');
-
-      const {id, full_name} = profile.data;
+      const response = await axios.get('/api/v1/accounts/me');
+      const { id, full_name } = response.data;
       dispatch({
         type: GET_USER,
         payload: { id, full_name },
       });
 
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 403) { history.replace('/forbidden'); }
+      else if (e.response.status === 401) { }
+      else console.error(e);
     }
   }
-;
+  ;
