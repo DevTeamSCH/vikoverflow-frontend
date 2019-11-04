@@ -1,4 +1,4 @@
-.page-container {
+.pageContainer {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,6 @@
     margin-bottom: 1em;
 }
 
-.no-wrap {
+.nowrap {
     white-space: nowrap;
 }
