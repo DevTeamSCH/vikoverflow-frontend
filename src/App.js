@@ -10,16 +10,6 @@ import Layout from './components/Layout';
 export const history = createBrowserHistory();
 
 
-function Nav() {
-  return (
-    <div style={{ display: 'flex', direction: 'flex-row', marginLeft: '-5px' }}>
-      <div style={{ margin: '0 5px' }}><Link to='/'>Home</Link></div>
-      <div style={{ margin: '0 5px' }}><Link to='/questions'>Questions</Link></div>
-      <div style={{ margin: '0 5px' }}><Link to='/about'>About</Link></div>
-    </div>
-  );
-}
-
 function HomePage() {
   return <div><h1>Home</h1></div>;
 }
@@ -36,7 +26,6 @@ function AuthorizedApp() {
   return (
     <Layout>
       <Route exact path='/questions' component={QuestionsPage} />
-      <Route exact path='/about' component={AboutPage} />
       <Route exact path='/' component={HomePage} />
     </Layout>
   );
