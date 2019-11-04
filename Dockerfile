@@ -5,7 +5,7 @@ WORKDIR /code
 COPY package.json yarn.lock /code/
 RUN yarn
 
-COPY ./src ./public /code/
+COPY . /code/
 
 ENV CHOKIDAR_USEPOLLING=true
 ENTRYPOINT [ "yarn", "start" ]
