@@ -19,7 +19,9 @@ export default function Layout({ children }) {
   return (
     <div className={style.pageContainer}>
       <TempNav />
-      {children}
+      <div className={style.main}>
+        {children}
+      </div>
       <a href='/api/v1/logout'>Logout</a>
     </div>
   );
