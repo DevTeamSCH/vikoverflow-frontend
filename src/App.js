@@ -4,10 +4,10 @@ import { createBrowserHistory } from 'history';
 import { connect } from 'react-redux';
 
 import { getUserData } from './actions';
+import LoginPage from './pages/LoginPage';
 
 export const history = createBrowserHistory();
 
-const LoginPage = () => (<div><h1>Login</h1><a href='/api/v1/login/authsch'>Login</a></div>);
 
 function Nav() {
   return (
