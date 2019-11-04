@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { getUserData } from './actions';
 import LoginPage from './pages/LoginPage';
+import Layout from './components/Layout';
 
 export const history = createBrowserHistory();
 
@@ -15,16 +16,6 @@ function Nav() {
       <div style={{ margin: '0 5px' }}><Link to='/'>Home</Link></div>
       <div style={{ margin: '0 5px' }}><Link to='/questions'>Questions</Link></div>
       <div style={{ margin: '0 5px' }}><Link to='/about'>About</Link></div>
-    </div>
-  );
-}
-
-function Layout({ children }) {
-  return (
-    <div>
-      <Nav />
-      {children}
-      <a href='/api/v1/logout'>Logout</a>
     </div>
   );
 }
