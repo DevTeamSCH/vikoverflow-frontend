@@ -6,17 +6,9 @@ import { connect } from 'react-redux';
 import { getUserData } from './actions';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
-import {HomePage, NewQuestionPage, QuestionDetailPage, QuestionsPage} from "./pages";
+import {ForbiddenPage, HomePage, NewQuestionPage, NotFoundPage, QuestionDetailPage, QuestionsPage} from "./pages";
 
 export const history = createBrowserHistory();
-
-function ForbiddenPage() {
-  return <div><h1>Forbidden</h1><Link to='/login'>Back to login page</Link></div>
-}
-
-function NotFoundPage() {
-  return <div><h1>Not Found</h1></div>
-}
 
 function App({ user, getUserData }) {
   useEffect(() => { getUserData(); }, []);
