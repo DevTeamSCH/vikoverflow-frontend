@@ -1,32 +1,22 @@
 import React, { useEffect } from 'react';
-import { Router, Route, Switch, Redirect, Link } from 'react-router-dom';
+import {Router, Route, Switch, Redirect, Link, withRouter} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { connect } from 'react-redux';
 
 import { getUserData } from './actions';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
+import {HomePage, NewQuestionPage, QuestionDetailPage, QuestionsPage} from "./pages";
 
 export const history = createBrowserHistory();
-
-
-function HomePage() {
-  return <div><h1>Home</h1></div>;
-}
-
-function AboutPage() {
-  return <div><h1>About</h1></div>;
-}
-
-function QuestionsPage() {
-  return <div><h1>Questions</h1></div>;
-}
 
 function AuthorizedApp() {
   return (
     <Layout>
-      <Route exact path='/questions' component={QuestionsPage} />
       <Route exact path='/' component={HomePage} />
+      <Route exact path='/q/browse' component={QuestionsPage} />
+      <Route exact path='/q/new' component={NewQuestionPage} />
+      <Route path='/q/:id' component={QuestionDetailPage} />
     </Layout>
   );
 }
