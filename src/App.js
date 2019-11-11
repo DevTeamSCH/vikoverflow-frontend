@@ -10,17 +10,6 @@ import {HomePage, NewQuestionPage, QuestionDetailPage, QuestionsPage} from "./pa
 
 export const history = createBrowserHistory();
 
-function AuthorizedApp() {
-  return (
-    <Layout>
-      <Route exact path='/' component={HomePage} />
-      <Route exact path='/q/browse' component={QuestionsPage} />
-      <Route exact path='/q/new' component={NewQuestionPage} />
-      <Route path='/q/:id' component={QuestionDetailPage} />
-    </Layout>
-  );
-}
-
 function ForbiddenPage() {
   return <div><h1>Forbidden</h1><Link to='/login'>Back to login page</Link></div>
 }
@@ -36,7 +25,14 @@ function App({ user, getUserData }) {
       <Switch>
         <Route exact path='/login'>{user.id ? <Redirect to='/' /> : <LoginPage />}</Route>
         <Route exact path='/forbidden'><ForbiddenPage /></Route>
-        <LoggedInRoute user={user} exact path='/private'><ForbiddenPage/></LoggedInRoute>
+
+        <Layout>
+          <LoggedInRoute user={user} exact path='/'><HomePage/></LoggedInRoute>
+          <LoggedInRoute user={user} exact path='/q/browse'><QuestionsPage/></LoggedInRoute>
+          <LoggedInRoute user={user} exact path='/q/new'><NewQuestionPage/></LoggedInRoute>
+          <LoggedInRoute user={user} path='/q/:id'><QuestionDetailPage/></LoggedInRoute>
+        </Layout>
+
         <Route path='*'><NotFoundPage/></Route>
       </Switch>
     </Router>
