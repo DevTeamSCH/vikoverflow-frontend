@@ -25,6 +25,10 @@ function ForbiddenPage() {
   return <div><h1>Forbidden</h1><Link to='/login'>Back to login page</Link></div>
 }
 
+function NotFoundPage() {
+  return <div><h1>Not Found</h1></div>
+}
+
 function App({ user, getUserData }) {
   useEffect(() => { getUserData(); }, []);
   return (
