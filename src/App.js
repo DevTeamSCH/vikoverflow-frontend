@@ -31,15 +31,23 @@ function NotFoundPage() {
 
 function App({ user, getUserData }) {
   useEffect(() => { getUserData(); }, []);
-  return (
+  return user.id === undefined ? (<p>Loading...</p>) : (
     <Router history={history}>
       <Switch>
         <Route exact path='/login'>{user.id ? <Redirect to='/' /> : <LoginPage />}</Route>
         <Route exact path='/forbidden'><ForbiddenPage /></Route>
-        <Route path='/'>{user.id ? <AuthorizedApp /> : <Redirect to='/login' />}</Route>
+        <LoggedInRoute user={user} exact path='/private'><ForbiddenPage/></LoggedInRoute>
+        <Route path='*'><NotFoundPage/></Route>
       </Switch>
     </Router>
   );
 }
+
+function LoggedInRoute({ children, user, ...rest }) {
+  return (
+    <Route {...rest} render={() => user.id ? children : <Redirect to='/login' />} />
+  );
+}
+
 
 export default connect(state => ({ user: state.user }), { getUserData })(App);
