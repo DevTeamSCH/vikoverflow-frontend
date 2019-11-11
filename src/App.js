@@ -15,7 +15,7 @@ function App({ user, getUserData }) {
   return user.id === undefined ? (<p>Loading...</p>) : (
     <Router history={history}>
       <Switch>
-        <Route exact path='/login'>{user.id ? <Redirect to='/' /> : <LoginPage />}</Route>
+        <LoggedOutRoute user={user} exact path='/login'><LoginPage/></LoggedOutRoute>
         <Route exact path='/forbidden'><ForbiddenPage /></Route>
 
         <Layout>
@@ -35,6 +35,12 @@ function LoggedInRoute({ children, user, ...rest }) {
   return (
     <Route {...rest} render={() => user.id ? children : <Redirect to='/login' />} />
   );
+}
+
+function LoggedOutRoute({ children, user, ...rest }) {
+  return (
+    <Route {...rest} render={() => user.id == null ? children : <Redirect to='/' />} />
+  )
 }
 
 
