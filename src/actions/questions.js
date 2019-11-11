@@ -7,7 +7,6 @@ import {
   ADD_QUESTION,
 } from './types';
 import axios from './session';
-import history from '../history';
 
 export const getQuestionList = () =>
   async (dispatch) => {
@@ -81,7 +80,7 @@ export const addQuestion = (title, details, show_username) => (
           type: ADD_QUESTION,
           payload: response.data,
         });
-        history.push('/home');
+        // history.push('/home');
       }
     } catch (e) {
       console.log(e);
