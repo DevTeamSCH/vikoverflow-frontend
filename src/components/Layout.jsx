@@ -21,15 +21,16 @@ export default function Layout({ children }) {
   return (
     <div>
       <Row>
-        <Col md="auto" className={"d-none d-md-block bg-dark " + style.sidebar} as="nav">
+        <Col md={2} className={"d-none d-md-block bg-light " + style.sidebar} as="nav">
           <div className={style.sidebarSticky}>
             <ul className="nav flex-column">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/q/browse">Questions</Nav.Link>
+              <Nav.Link href="/q/new">New question</Nav.Link>
             </ul>
           </div>
         </Col>
-        <Col md={10} lg={11} className="ml-sm-auto px-4">
+        <Col md={10} className="ml-md-auto px-4">
           {children}
         </Col>
       </Row>
