@@ -3,7 +3,6 @@ import QuestionContainer from './QuestionContainer';
 import QuestionListContainer from './QuestionListContainer';
 import CommentFormContainer from './CommentFormContainer';
 import AnswerFormContainer from './AnswerFormContainer';
-import DesktopContainer from './DesktopContainer';
 
 export {
   NewQuestionContainer,
@@ -11,5 +10,4 @@ export {
   QuestionListContainer,
   AnswerFormContainer,
   CommentFormContainer,
-  DesktopContainer
 }
