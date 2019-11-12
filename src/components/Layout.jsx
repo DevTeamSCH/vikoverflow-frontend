@@ -15,10 +15,15 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 export default function Layout({ children }) {
   return (
     <div>
-      <Navbar bg='dark' variant='dark' className={style.navbar} fixed='top'>
+      <Navbar bg='dark' variant='dark' className={style.navbar} fixed='top' expand='md'>
         <Navbar.Brand href="/">VikOverflow</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
+          <Nav className='d-flex d-md-none'>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/q/browse">Questions</Nav.Link>
+            <Nav.Link href="/q/new">New question</Nav.Link>
+          </Nav>
           <Nav className='mr-auto'>
             <Form inline>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" />
