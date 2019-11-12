@@ -23,3 +23,15 @@
         position: sticky;
     }
 }
+
+.content {
+    padding-bottom: 50px;
+    min-height: calc(100vh - 50px);
+}
+
+.footer {
+    position: relative;
+    z-index: 101; /* Above the sidebar */
+    height: 50px;
+    background-color: #1b1c1d;
+}
