@@ -16,28 +16,23 @@ function App({ user, getUserData }) {
   return user.id === undefined ? (<p>Loading...</p>) : (
     <Router history={history}>
       <Switch>
-
-        {routes.map((route, index) => {
-          let TargetComponent = route.component;
-
-          let RouteComponent = Route;
-          if (route.loginRequired)
-            RouteComponent = LoggedInRoute;
-          else if (route.logoutRequired)
-            RouteComponent = LoggedOutRoute;
-
-          return (
-            <RouteComponent user={user} path={route.path} exact key={index}>
-              <LayoutWrapper route={route}>
-                <TargetComponent />
-              </LayoutWrapper>
-            </RouteComponent>
-          );
-        })}
-
+        {routes.filter(route => route.loginRequired).map(route => getRouteComponent(user, route, LoggedInRoute))}
+        {routes.filter(route => route.logoutRequired).map(route => getRouteComponent(user, route, LoggedOutRoute))}
+        {routes.filter(route => !route.loginRequired  && !route.logoutRequired).map(route => getRouteComponent(user, route, Route))}
         <Route path='*'><NotFoundPage/></Route>
       </Switch>
     </Router>
+  );
+}
+
+function getRouteComponent(user, route, AuthRouteComponent) {
+  let TargetComponent = route.component;
+  return (
+    <AuthRouteComponent user={user} path={route.path} exact key={route.path}>
+      <LayoutWrapper route={route}>
+        <TargetComponent />
+      </LayoutWrapper>
+    </AuthRouteComponent>
   );
 }
 
