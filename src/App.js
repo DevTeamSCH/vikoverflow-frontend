@@ -5,8 +5,8 @@ import {connect} from 'react-redux';
 
 import {getUserData} from './actions';
 import Layout from './components/Layout';
-import {NotFoundPage} from "./pages";
-import routes from "./routes";
+import {ForbiddenPage, HomePage, NewQuestionPage, NotFoundPage, QuestionDetailPage, QuestionsPage} from "./pages";
+import LoginPage from "./pages/LoginPage";
 
 export const history = createBrowserHistory();
 
@@ -16,28 +16,22 @@ function App({ user, getUserData }) {
   return user.id === undefined ? (<p>Loading...</p>) : (
     <Router history={history}>
       <Switch>
-        {routes.filter(route => route.loginRequired).map(route => (
-          <LoggedInRoute user={user} path={route.path} exact key={route.path} component={wrapLayout(route)}/>
-        ))}
-
-        {routes.filter(route => route.logoutRequired).map(route => (
-          <LoggedOutRoute user={user} path={route.path} exact key={route.path} component={wrapLayout(route)}/>
-        ))}
-
-        {routes.filter(route => !route.loginRequired  && !route.logoutRequired).map(route => (
-          <Route path={route.path} exact key={route.path} component={wrapLayout(route)}/>
-        ))}
-
-        <Route path='*'><NotFoundPage/></Route>
+        <LoggedOutRoute exact path='/login' user={user} component={LoginPage} />
+        <LoggedInRoute exact path='/' user={user} component={withLayout(HomePage)} />
+        <LoggedInRoute exact path='/q/browse' user={user} component={withLayout(QuestionsPage)} />
+        <LoggedInRoute exact path='/q/new' user={user} component={withLayout(NewQuestionPage)} />
+        <LoggedInRoute exact path='/q/:id' user={user} component={withLayout(QuestionDetailPage)} />
+        <Route exact path='/forbidden' user={user} component={ForbiddenPage} />
+        <Route path='*' component={NotFoundPage} />
       </Switch>
     </Router>
   );
 }
 
-function wrapLayout({component: Component, noLayout}) {
+function withLayout(WrappedComponent) {
   return class extends React.Component {
     render() {
-      return noLayout ? <Component /> : <Layout><Component/></Layout>;
+      return <Layout><WrappedComponent {...this.props} /></Layout>
     }
   }
 }
