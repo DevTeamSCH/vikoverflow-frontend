@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import {Router, Route, Switch, Redirect} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {Redirect, Route, Router, Switch} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
+import {connect} from 'react-redux';
 
-import { getUserData } from './actions';
+import {getUserData} from './actions';
 import Layout from './components/Layout';
 import {NotFoundPage} from "./pages";
 import routes from "./routes";
@@ -16,46 +16,41 @@ function App({ user, getUserData }) {
   return user.id === undefined ? (<p>Loading...</p>) : (
     <Router history={history}>
       <Switch>
-        {routes.filter(route => route.loginRequired).map(route => getRouteComponent(user, route, LoggedInRoute))}
-        {routes.filter(route => route.logoutRequired).map(route => getRouteComponent(user, route, LoggedOutRoute))}
-        {routes.filter(route => !route.loginRequired  && !route.logoutRequired).map(route => getRouteComponent(user, route, Route))}
+        {routes.filter(route => route.loginRequired).map(route => (
+          <LoggedInRoute user={user} path={route.path} exact key={route.path} component={wrapLayout(route)}/>
+        ))}
+
+        {routes.filter(route => route.logoutRequired).map(route => (
+          <LoggedOutRoute user={user} path={route.path} exact key={route.path} component={wrapLayout(route)}/>
+        ))}
+
+        {routes.filter(route => !route.loginRequired  && !route.logoutRequired).map(route => (
+          <Route path={route.path} exact key={route.path} component={wrapLayout(route)}/>
+        ))}
+
         <Route path='*'><NotFoundPage/></Route>
       </Switch>
     </Router>
   );
 }
 
-function getRouteComponent(user, route, AuthRouteComponent) {
-  let TargetComponent = route.component;
+function wrapLayout({component: Component, noLayout}) {
+  return class extends React.Component {
+    render() {
+      return noLayout ? <Component /> : <Layout><Component/></Layout>;
+    }
+  }
+}
+
+function LoggedInRoute({ component: Component, user, ...rest }) {
   return (
-    <AuthRouteComponent user={user} path={route.path} exact key={route.path}>
-      <LayoutWrapper route={route}>
-        <TargetComponent />
-      </LayoutWrapper>
-    </AuthRouteComponent>
+    <Route {...rest} render={props => user.id ? <Component {...props} /> : <Redirect to='/login' />} />
   );
 }
 
-function LayoutWrapper({children, route, ...props}) {
-  if (route.noLayout)
-    return React.cloneElement(children, props);
-
+function LoggedOutRoute({ component: Component, user, ...rest }) {
   return (
-    <Layout>
-      {React.cloneElement(children, props)}
-    </Layout>
-  )
-}
-
-function LoggedInRoute({ children, user, ...rest }) {
-  return (
-    <Route {...rest} render={props => user.id ? React.cloneElement(children, props) : <Redirect to='/login' />} />
-  );
-}
-
-function LoggedOutRoute({ children, user, ...rest }) {
-  return (
-    <Route {...rest} render={props => user.id == null ? React.cloneElement(children, props) : <Redirect to='/' />} />
+    <Route {...rest} render={props => user.id == null ? <Component {...props} /> : <Redirect to='/' />} />
   )
 }
 
