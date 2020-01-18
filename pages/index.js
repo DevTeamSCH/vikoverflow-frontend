@@ -11,7 +11,7 @@ export default () => {
 
       <div className="hero">
         <h1 className="title">Welcome to VikOverflow!</h1>
-        {JSON.stringify({ user, loading })}
+        Logged in as {user?.full_name} with ID: {user?.id}.
       </div>
 
       <style jsx>{`

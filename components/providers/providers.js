@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import {useRouter} from "next/router";
 
 const AuthContext = createContext(null);
 
@@ -7,19 +8,31 @@ export const useAuth = () => useContext(AuthContext);
 export default ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const checkCookie = async () => {
-      // csak kliens oldalon fog lefutni +
-      // a legfrissebb next verzioban mar polyfillelve is van a fetch
-      // szoval csak igy naturba is hivhato :D
-      const response = await fetch("/valami-endpoint");
+      const response = await fetch("/api/v1/accounts/me");
 
-      if (response.ok) {
+      // TODO: Meg kéne csinálni, hogy ez a hibakezelés minden request-nél így legyen
+      if (response.status === 401) {
+        // TODO: Megjegyezni a jelenlegi url-t és a sikeres bejelentkezés után oda irányítani
+        await router.push("/login")
+      }
+      else if (response.status === 403) {
+        await router.push("/forbidden")
+      }
+      else if (response.status === 404) {
+        await router.push("/notfound")
+      }
+      else if (response.ok) {
         const data = await response.json();
-        // ha a datat ki kell bontani akkor do it, nem vagom mit ad a backend
         setUser(data);
       }
+      else {
+        // TODO: Valamilyen exception / hiba oldal cucc
+      }
+
       setLoading(false);
     };
     checkCookie();
