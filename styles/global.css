@@ -1,0 +1,20 @@
+:root {
+  --bg: white;
+  --fg: black;
+  --theme-primary: #28166f;
+  --theme-secondary: #667ab3;
+  --transition: 100ms ease-in-out;
+}
+
+.dark {
+  --bg: #131415;
+  --fg: #fafbfc;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--fg);
+  transition: color var(--transition), background var(--transition);
+}

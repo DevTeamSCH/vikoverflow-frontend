@@ -1,0 +1,27 @@
+.default {
+  background: var(--theme-secondary);
+  color: white;
+  line-height: 1;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.default:hover {
+  background: var(--theme-primary);
+}
+
+.default:focus {
+  outline: 0;
+}
+
+.peldaProp {
+  background: red;
+}
+
+.peldaProp:hover {
+  background: darkred;
+}
