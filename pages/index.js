@@ -1,17 +1,19 @@
 import Layout from "../components/layout";
-import Nav from "../components/nav";
+import Navbar from "../components/navbar";
 import { useAuth } from "../components/providers";
+import Button from "../components/button";
 
 export default () => {
-  // pelda az auth hasznalatara
   const { user, loading } = useAuth();
   return (
     <Layout>
-      <Nav />
+      <Navbar />
 
       <div className="hero">
         <h1 className="title">Welcome to VikOverflow!</h1>
         Logged in as {user?.full_name} with ID: {user?.id}.
+        <Button>Ez egy gomb</Button>
+        <Button peldaProp>Ez egy piros gomb</Button>
       </div>
 
       <style jsx>{`
