@@ -1,9 +1,12 @@
 import "../styles/reset.css";
 import "../styles/global.css";
 import Providers from "../components/providers";
+import Layout from "../components/layout";
 
 export default ({ Component, pageProps }) => (
   <Providers>
-    <Component {...pageProps} />
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   </Providers>
 );
