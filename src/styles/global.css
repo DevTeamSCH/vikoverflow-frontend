@@ -1,8 +1,12 @@
+@import url("https://rsms.me/inter/inter.css");
+
 :root {
   --bg: white;
   --fg: black;
   --theme-primary: #28166f;
   --theme-secondary: #667ab3;
+  --gray: #ccc;
+  --main-content: 75rem;
   --transition: 100ms ease-in-out;
 }
 
@@ -12,13 +16,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   background: var(--bg);
   color: var(--fg);
   transition: color var(--transition), background var(--transition);
-}
-
-#__next {
-  min-height: 100vh;
 }

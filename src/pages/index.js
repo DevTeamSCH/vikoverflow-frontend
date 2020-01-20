@@ -1,8 +1,9 @@
+import Layout from "../components/layout";
 import withAuth from "../hoc/withAuth";
 
-const index = () => {
+const IndexPage = () => {
   return (
-    <div className='container'>
+    <Layout>
       <p>
         Lórum ipse talán a pindi, bozatan a legkevésbé glókos. Az egyfényezések
         egyességéről lajlt nedlenítés délelőtt a kacsos zsoldák mezés mint száz
@@ -36,42 +37,17 @@ const index = () => {
         sercest csúszós és dert fekenyven fölő cerfázja törösvittel
         együttműködve. A serces a jeteség vígság szélgésére doricázja a martát.
       </p>
-      <p>
-        Sem az éritben, sem a vádéban nincs folymáda a száns pondíjknak. A
-        bítést sommás lomazdások és szidárumok szakadatlan kersztesében, és e
-        kersztesek előre fongos halomforaként mulált prosztok közepette a
-        piságok lassacskán irdoznak, pasztanak a kvadásból, nyednek szüléshöz,
-        kaffogják magukat és egyre jobban alikáznak eményükben. És ekkor,
-        szintet ösztönözve és sarkallva, kódnia vednek, eleinte csak pukkolják,
-        majd lendelik és népdezik a pondíjkat, melyeket krac szelt a tassulástól
-        fogva. A zsold és tutás először nem az ezeti és porlány piságokban
-        perészer végbe, mivel a végtelen nem dukmál radászokat, a csinylós
-        szidárum pisága is éppolyan porlány és végtelen, mint az egyves fankáé ;
-        ez a zsold és tutás a legkevésbé kicsi piságokban perészer végbe. Ezek
-        pedig a fankák, a krac által ásosak, a szülesek, a tisztenségek és
-        halmások. Ha egyszer ezek az egyves és bosszús szidárumok, akiket a
-        kulán kodt meg és dorosott fel, ami nélkül nem ügyez egyves és jó terdő
-        e toldáson, ha egyszer ezek a szidárumok cselmenik magukban ezeket a
-        száns győzőket, melyeket öntudatlanul minden szidárum a piságában
-        jártékoz, akkor persze az enységek is sokkal könnyebben nyelkeznek a
-        bozáshoz. És így van az, hogy az egyves győzők, a szabolt pondíjk,
-        amelyeket a bítésben először krac virádászaként szeskeztek, idővel
-        valóban szánsnak nyűkölyögnek ; s minden szidárum vonulja őket magában,
-        és saját, végtelen lingje vagy saját porlány pisága deseléseként
-        bindolhatja el vagy kell csapcsoznia őket.
-      </p>
       <style jsx>{`
-        .container {
-          padding: 10px;
-          max-width: 600px;
-        }
         p {
           margin: 10px 0;
           text-align: justify;
         }
+        p:first-of-type {
+          margin: 0;
+        }
       `}</style>
-    </div>
+    </Layout>
   );
 };
 
-export default withAuth(index);
+export default withAuth(IndexPage);
