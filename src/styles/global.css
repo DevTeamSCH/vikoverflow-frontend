@@ -22,3 +22,7 @@ body {
   color: var(--fg);
   transition: color var(--transition), background var(--transition);
 }
+
+#__next {
+  min-height: 100vh;
+}
