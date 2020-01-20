@@ -3,9 +3,11 @@ import Navbar from "../components/navbar";
 import { useAuth } from "../components/providers";
 import Button from "../components/button";
 import toggleDarkMode from "../lib/toggle-dark-mode";
+import useSWR from "swr";
 
 export default () => {
   const { user, loading } = useAuth();
+  const { data } = useSWR("http://worldclockapi.com/api/json/est/now");
   return (
     <Layout>
       <Navbar />
@@ -16,6 +18,7 @@ export default () => {
         <Button>Ez egy gomb</Button>
         <Button peldaProp>Ez egy piros gomb</Button>
         <Button onClick={toggleDarkMode}>Dark mode</Button>
+        {data ? data.dayOfTheWeek : "loading..."}
       </div>
     </Layout>
   );

@@ -1,4 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { SWRConfig } from "swr";
+
+const fetcher = async (...args) => {
+  const res = await fetch(...args);
+  return res.json();
+};
 
 const AuthContext = createContext(null);
 
@@ -23,8 +29,10 @@ export default ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading }}>
-      {children}
-    </AuthContext.Provider>
+    <SWRConfig value={{ fetcher }}>
+      <AuthContext.Provider value={{ user, loading }}>
+        {children}
+      </AuthContext.Provider>
+    </SWRConfig>
   );
 };
