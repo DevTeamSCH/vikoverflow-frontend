@@ -2,11 +2,9 @@
 ## Együttműködés
 Mindenki külön branchen dolgozik.
 
-Feature branch név formátum: feature/{feature neve}/{fejlesztő neve}, pl. feature/auth/den.
+Feature branch név formátum: feature/{feature neve}, pl. feature/auth.
 
- - Miért? Azért, mert ha egy másik fejlesztő is be akar csatlakozni a feature fejlesztésébe, akkor nem lesznek random branch nevek a repoban, és az egyes branchek lényege egyértelmű lesz.
-
-Nem commitolunk más branchére. Helyette leágazunk belőle (a fentebb leírt branch név formátumot használva) és egy pull requestet indítunk, amiben meg lehet beszélni az implementációbeli különbségeket.
+Nem commitolunk más branchére. Helyette leágazunk belőle, megtartva a feature branch eredeti nevét és hozzáírva a mi nevünket (pl. feature/auth-den) és egy pull requestet indítunk, amiben meg lehet beszélni az implementációbeli különbségeket.
 
 ## YAGNI & DRY
 YAGNI = You Ain't Gonna Need It
@@ -40,26 +38,21 @@ Coding style: a mindenkori prettier config alapján. Dockerben fejlesztők szám
 .
 \-- src
     |-- pages
-    \-- modules
+    |-- utils
+    \-- components
         |-- common
-        |-- question_list
-        \-- question_detail
-            |-- index.js
-            |-- lib
-            |   \-- context.js
-            |-- question
-            |   |-- index.js
-            |   \-- QuestionOwnerDetails.jsx
-            |-- answer
-            \-- comment
+        |   \-- VoteBox.js
+        |-- QuestionList.js
+        |-- QuestionDetail.js
+        \-- ...
 ```
 A pages mappa tartalmazza az oldalakat. Ez a Next.js default oldal mappa, gyakorlatilag a routing is le van kezelve benne.
 
- - A **modules** mappa tartalmazza a komponenseket domainek szerint csoportosítva. Egy domain összefoglalja azokat a komponenseket, amelyeknek jól megnevezhető közös célja van.
- - **common** domainbe kerülnek azok a komponensek, amelyeket több másik domainben is használunk.
- - A domainek neveinek a formátuma a snake case.
- - A domainek tartalmazhatnak subdomaineket is. Pl. a question_detail domainben találhatók a question, answer és comment subdomainek.
- - A lib nevű subdomainekben működést leíró kód van, pl. hook-ok definíciója, redux stb.
+
+ - A **common** mappába kerülnek azok a komponensek, amelyeket több másik komponensben is használunk.
+ - A **utils** mappába kerülnek a segédfüggvények.
+
+ A többi majd alakul.
 
 ### Styling
 styled-jsx
