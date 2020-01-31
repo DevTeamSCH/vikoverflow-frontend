@@ -6,7 +6,7 @@ export default () => (
     </div>
     <style jsx>{`
       footer {
-        border-top: 2px solid var(--gray);
+        border-top: 2px solid var(--accents-3);
       }
       .content {
         width: var(--main-content);

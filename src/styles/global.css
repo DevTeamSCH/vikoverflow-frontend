@@ -2,12 +2,11 @@
 
 :root {
   /* Colors */
-  --white: #fff;
-  --lightest-gray: #e2e2e2;
-  --lighter-gray: #545454;
-  --gray: #292929;
-  --dark-gray: #141414;
-  --black: #000;
+  --fg: #fff;
+  --accents-1: #e2e2e2;
+  --accents-2: #545454;
+  --accents-3: #292929;
+  --bg: #141414;
 
   /* Spacing */
   --gap-half: 0.5rem;
@@ -38,6 +37,17 @@ body {
 }
 
 body {
-  background: var(--dark-gray);
-  color: var(--white);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --fg: #000;
+    --accents-1: #333;
+    --accents-2: #ccc;
+    --accents-3: #dedede;
+    --bg: #fff;
+  }
 }

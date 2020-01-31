@@ -34,9 +34,9 @@ export default ({ children }) => {
           width: 20px;
           height: 20px;
           margin: 2px;
-          border: 3px solid var(--lighter-gray);
-          background: var(--black);
-          color: var(--black);
+          border: 3px solid var(--accents-2);
+          background: var(--bg);
+          color: var(--bg);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -44,14 +44,14 @@ export default ({ children }) => {
         }
 
         .check.checked {
-          background: var(--white);
-          border-color: var(--white);
-          color: var(--black);
+          background: var(--fg);
+          border-color: var(--fg);
+          color: var(--bg);
         }
 
         label:hover .check:not(.checked) {
-          background: var(--gray);
-          color: var(--gray);
+          background: var(--accents-3);
+          color: var(--accents-3);
         }
 
         .text {

@@ -8,8 +8,8 @@ export default ({ children, small, secondary, tertiary, iconOnly }) => (
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: var(--black);
-        background: var(--white);
+        color: var(--bg);
+        background: var(--fg);
         padding: calc(0.875 * var(--gap)) var(--gap);
         border: 0;
         font-size: inherit;
@@ -24,8 +24,8 @@ export default ({ children, small, secondary, tertiary, iconOnly }) => (
       }
 
       button:hover {
-        background: var(--lightest-gray);
-        border-color: var(--lightest-gray);
+        background: var(--accents-1);
+        border-color: var(--accents-1);
       }
 
       button > :global(svg) {
@@ -38,21 +38,21 @@ export default ({ children, small, secondary, tertiary, iconOnly }) => (
       }
 
       button.secondary {
-        background: var(--gray);
-        color: var(--white);
+        background: var(--accents-3);
+        color: var(--fg);
       }
 
       button.secondary:hover {
-        background: var(--lighter-gray);
+        background: var(--accents-2);
       }
 
       button.tertiary {
         background: transparent;
-        color: var(--white);
+        color: var(--fg);
       }
 
       button.tertiary:hover {
-        background: var(--gray);
+        background: var(--accents-3);
       }
 
       button.iconOnly {

@@ -11,7 +11,7 @@ export default () => (
           letter-spacing: -0.015em;
           user-select: none;
           text-decoration: none;
-          color: var(--white);
+          color: var(--fg);
         }
       `}</style>
     </a>

@@ -4,9 +4,9 @@ export default ({ placeholder }) => {
       <input placeholder={placeholder} />
       <style jsx>{`
         input {
-          background: var(--gray);
-          color: var(--white);
-          border: 2px solid var(--gray);
+          background: var(--accents-3);
+          color: var(--fg);
+          border: 2px solid var(--accents-3);
           padding: calc(0.75 * var(--gap)) var(--gap);
           font-size: inherit;
           transition: all var(--transition);
@@ -21,7 +21,7 @@ export default ({ placeholder }) => {
 
         input:focus {
           outline: 0;
-          border-color: var(--white);
+          border-color: var(--fg);
         }
       `}</style>
     </>

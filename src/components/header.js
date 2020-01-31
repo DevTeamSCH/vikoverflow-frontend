@@ -34,10 +34,10 @@ export default () => {
       </div>
       <style jsx>{`
         header {
-          border-bottom: 2px solid var(--gray);
+          border-bottom: 2px solid var(--accents-3);
           top: 0;
           position: sticky;
-          background: var(--dark-gray);
+          background: var(--bg);
         }
 
         .content {
@@ -72,7 +72,7 @@ export default () => {
           right: 0;
           height: 2px;
           width: 24px;
-          background: var(--white);
+          background: var(--fg);
         }
 
         .line:nth-child(1) {
@@ -96,7 +96,7 @@ export default () => {
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--dark-gray);
+            background: var(--bg);
             padding: calc(6 * var(--gap)) var(--gap) 0;
             z-index: 2;
           }

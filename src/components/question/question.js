@@ -65,7 +65,7 @@ export default () => (
       }
 
       .container {
-        border: 2px solid var(--gray);
+        border: 2px solid var(--accents-3);
         padding: var(--gap-double) var(--gap);
         display: grid;
         grid-template-areas: "voting title" "voting text" "voting info";
