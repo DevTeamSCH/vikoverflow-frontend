@@ -5,7 +5,7 @@ import Footer from "./footer";
 export default ({ children, header = true, footer = true, pageTitle }) => (
   <div>
     <Head>
-      <title>{pageTitle ? `${pageTitle} | vikoverflow` : "vikoverflow"}</title>
+      <title>{pageTitle ? `${pageTitle} · vikoverflow` : "vikoverflow"}</title>
     </Head>
 
     {header && <Header />}
