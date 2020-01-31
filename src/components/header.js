@@ -73,7 +73,6 @@ export default () => {
           height: 2px;
           width: 24px;
           background: var(--white);
-          transition: all var(--transition);
         }
 
         .line:nth-child(1) {
