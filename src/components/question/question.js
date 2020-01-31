@@ -1,9 +1,10 @@
-import Button from "../components/button";
+import Button from "../button";
+import Tag from "./tag";
 import { ArrowDown, ArrowUp } from "react-feather";
 
 export default () => (
   <div className="container">
-    <span className="voting-container">
+    <div className="voting-container">
       <Button iconOnly small tertiary>
         <ArrowUp size={21} />
       </Button>
@@ -11,7 +12,7 @@ export default () => (
       <Button iconOnly small tertiary>
         <ArrowDown size={21} />
       </Button>
-    </span>
+    </div>
     <h2 className="title">
       This is the long title of a very important question
     </h2>
@@ -25,6 +26,14 @@ export default () => (
       scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac
       risus.
     </p>
+    <div className="info-container">
+      <div className="tags">
+        <Tag>javascript</Tag>
+        <Tag>react</Tag>
+        <Tag>frontend</Tag>
+      </div>
+      <span className="author">vassbence - 2020/01/10</span>
+    </div>
     <style jsx>{`
       .title,
       .text {
@@ -47,12 +56,28 @@ export default () => (
         align-items: center;
       }
 
+      .info-container {
+        grid-area: info;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       .container {
         border: 2px solid var(--gray);
-        padding: 2rem 1rem;
+        padding: var(--gap-double) var(--gap);
         display: grid;
-        grid-template-areas: "voting title" "voting text";
+        grid-template-areas: "voting title" "voting text" "voting info";
         grid-gap: 1rem;
+      }
+
+      .tags > :global(*:not(:first-child)) {
+        margin-left: var(--gap-half);
+      }
+
+      .author {
+        font-size: 0.875rem;
       }
     `}</style>
   </div>

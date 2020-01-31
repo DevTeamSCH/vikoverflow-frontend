@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "./header";
 import Footer from "./footer";
 
-export default ({ children, header = true, footer = true, pageTitle }) => (
+export default ({ children, header = true, footer = false, pageTitle }) => (
   <div>
     <Head>
       <title>{pageTitle ? `${pageTitle} · vikoverflow` : "vikoverflow"}</title>

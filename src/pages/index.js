@@ -13,7 +13,7 @@ import {
 } from "react-feather";
 
 export default () => (
-  <Page pageTitle="Főoldal">
+  <Page pageTitle="Főoldal" footer>
     <h1>Hali!</h1>
     <p>
       Vizsgák óta volt egy kis időm, perem csináltam egy design systemet,
