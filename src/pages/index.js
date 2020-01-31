@@ -1,53 +1,105 @@
-import Layout from "../components/layout";
-import withAuth from "../hoc/withAuth";
+import Button from "../components/button";
+import Input from "../components/input";
+import Page from "../components/page";
+import Checkbox from "../components/checkbox";
+import {
+  Copy,
+  ArrowRight,
+  Trash,
+  User,
+  ArrowUp,
+  ArrowDown
+} from "react-feather";
 
-const IndexPage = () => {
-  return (
-    <Layout>
-      <p>
-        Lórum ipse talán a pindi, bozatan a legkevésbé glókos. Az egyfényezések
-        egyességéről lajlt nedlenítés délelőtt a kacsos zsoldák mezés mint száz
-        fongból faggyús mormányozott nyezése. Telmesztről közel ötven álca
-        vitált a duettbe az érlentőkkel. A menet podt a lajdok bortajas puffos
-        boló előtt is, majd a hadlit egyességen, az iráj előtt sedtek el a
-        dítások. Az izmumot a kacsos zsoldák jesztő varnája és a ralakos
-        báltások miatt a kacsos zsoldák gyaramos liszkéje (szveterény), a velen
-        zsoldák liszkéje, a tatlan rónák liszkéje és a szédő görmöci zsoldák
-        liszkéje szellőzte, amelyhez likadt a lező frum és a szédő görmöci
-        zsoldák fejtő rajtása is. Az izmumon személyesen is lenítettek a
-        bombóval bizmos rulan búcskavák, így a kálék és a bornok csattái is. Az
-        ügyecset ványodta: továbbra is a kalmas stés zürjénei, de ha a
-        polymányzás semmibe kölgyeli hozásaikat, resztők bokznak a vécéh
-        neszékéhez gyógyítnia. A törköltek spélezték a krazsábok 5 száns, azaz a
-        gyakony növeszek 15-16 száns jedesét mogaság uncsolásától
-        visszamenőlegesen, a heteg olás és a patos felő tikájának zöltségét,
-        valamint kósulták a “higgadt „indéglőket.
-      </p>
-      <p>
-        A serces ezen kívül magába bantja a mintereményre páramas, mező alomokat
-        a fölővel és apás szúrót vereplő leveliceket. Hatos vívumra sunyos
-        sercest egy csúszós és egy pozsgás szegeder fölő népestet közösen. Fölő
-        gálisban vannak a hatos vívum telétetéseivel és több alás szőkezerrel
-        salmatolnak, így hatékonyan tudják negyelegnie kötölcséseiket a
-        csemények csillén asztomában. A csúszós szegeder fölő vonoványa a bonk
-        bizomára, csapros igonyokra, bünteresre való bélyező, a pozsgás szegeder
-        fölő vonoványa a kozarka maisága, menzás és zakt vonoványokra való
-        bélyező. A serces ezen kívül magába bantja a mintereményre páramas, mező
-        alomokat a fölővel és apás szúrót vereplő leveliceket. Pökhely marány
-        sercest csúszós és dert fekenyven fölő cerfázja törösvittel
-        együttműködve. A serces a jeteség vígság szélgésére doricázja a martát.
-      </p>
-      <style jsx>{`
-        p {
-          margin: 10px 0;
-          text-align: justify;
-        }
-        p:first-of-type {
-          margin: 0;
-        }
-      `}</style>
-    </Layout>
-  );
-};
+export default () => (
+  <Page pageTitle="Főoldal">
+    <h1>Hali!</h1>
+    <p>
+      Vizsgák óta volt egy kis időm, perem csináltam egy design systemet,
+      kiindulásnak csak jó lesz :D
+    </p>
+    <h2>Atomok</h2>
+    <div className="line">
+      <Input placeholder="Placeholder text" />
+    </div>
+    <div className="line">
+      <Checkbox>Label text</Checkbox>
+    </div>
+    <div className="line">
+      <Button>Primary</Button>
+      <Button secondary>Secondary</Button>
+      <Button tertiary>Tertiary</Button>
+    </div>
+    <div className="line">
+      <Button>
+        <Copy size={24} />
+        Primary w/ icon
+      </Button>
+      <Button secondary>
+        <ArrowRight size={24} />
+        Secondary w/ icon
+      </Button>
+      <Button tertiary>
+        <ArrowUp size={24} />
+        Tertiary w/ icon
+      </Button>
+    </div>
+    <div className="line">
+      <Button small>Small</Button>
+      <Button small secondary>
+        Small secondary
+      </Button>
+      <Button small tertiary>
+        Small tertiary
+      </Button>
+    </div>
+    <div className="line">
+      <Button small>
+        <User size={21} />
+        Small w/ icon
+      </Button>
+      <Button small secondary>
+        <Trash size={21} />
+        Small secondary w/ icon
+      </Button>
+      <Button small tertiary>
+        <Trash size={21} />
+        Small tertiary w/ icon
+      </Button>
+    </div>
+    <div className="line">
+      <Button small iconOnly tertiary>
+        <ArrowUp size={24} />
+      </Button>
+      <Button small iconOnly tertiary>
+        <ArrowDown size={24} />
+      </Button>
+    </div>
+    <h2>Molekulák</h2>
+    <form>
+      <Input placeholder="Placeholder text" />
+      <Button>Submit</Button>
+    </form>
+    <style jsx>{`
+      .line {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+      }
 
-export default withAuth(IndexPage);
+      .line > :global(*:not(:first-child)) {
+        margin-left: 1rem;
+      }
+
+      h2 {
+        margin-top: 3rem;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 0.3fr;
+        grid-column-gap: 1rem;
+      }
+    `}</style>
+  </Page>
+);
