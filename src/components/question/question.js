@@ -2,7 +2,7 @@ import Button from "../button";
 import Tag from "./tag";
 import { ArrowDown, ArrowUp } from "react-feather";
 
-export default () => (
+export default ({ title, text, tags, author, date }) => (
   <div className="container">
     <div className="voting-container">
       <Button iconOnly small tertiary>
@@ -13,26 +13,15 @@ export default () => (
         <ArrowDown size={21} />
       </Button>
     </div>
-    <h2 className="title">
-      This is the long title of a very important question
-    </h2>
-    <p className="text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu
-      dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae
-      augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in
-      eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent
-      rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero
-      gravida, euismod vulputate turpis. Quisque molestie, mauris sed
-      scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac
-      risus.
-    </p>
+    <h2 className="title">{title}</h2>
+    <p className="text">{text}</p>
     <div className="info-container">
       <div className="tags">
-        <Tag>javascript</Tag>
-        <Tag>react</Tag>
-        <Tag>frontend</Tag>
+        {tags.map(t => (
+          <Tag>{t}</Tag>
+        ))}
       </div>
-      <span className="author">vassbence - 2020/01/10</span>
+      <span className="author">{`${author} - ${date}`}</span>
     </div>
     <style jsx>{`
       .title,
