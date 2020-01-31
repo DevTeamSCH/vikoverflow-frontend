@@ -2,6 +2,7 @@ import Button from "../components/button";
 import Input from "../components/input";
 import Page from "../components/page";
 import Checkbox from "../components/checkbox";
+import Question from "../components/question";
 import {
   Copy,
   ArrowRight,
@@ -76,10 +77,15 @@ export default () => (
       </Button>
     </div>
     <h2>Molekulák</h2>
-    <form>
-      <Input placeholder="Placeholder text" />
-      <Button>Submit</Button>
-    </form>
+    <div className="line">
+      <form>
+        <Input placeholder="Placeholder text" />
+        <Button>Submit</Button>
+      </form>
+    </div>
+    <div className="line">
+      <Question />
+    </div>
     <style jsx>{`
       .line {
         display: flex;
@@ -97,6 +103,7 @@ export default () => (
 
       form {
         display: grid;
+        width: 100%;
         grid-template-columns: 1fr 0.3fr;
         grid-column-gap: 1rem;
       }
