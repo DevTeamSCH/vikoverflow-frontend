@@ -1,9 +1,9 @@
 import Button from "../button";
 import Tag from "./tag";
-import Link from "next/link";
+import Comment from "./comment";
 import { ArrowDown, ArrowUp } from "react-feather";
 
-export default ({ id, title, text, tags, author, date }) => (
+export default ({ title, text, tags, author, date, comments }) => (
   <div className="container">
     <div className="voting-container">
       <Button iconOnly small tertiary>
@@ -14,34 +14,23 @@ export default ({ id, title, text, tags, author, date }) => (
         <ArrowDown size={21} />
       </Button>
     </div>
-    <Link href={`/questions/${id}`}>
-      <a className="title">{title}</a>
-    </Link>
+    <h2 className="title">{title}</h2>
     <p className="text">{text}</p>
     <div className="info-container">
       <div className="tags">
         {tags.map(t => (
-          <Tag key={t.id} {...t} />
+          <Tag>{t}</Tag>
         ))}
       </div>
-      <span className="info">
-        <Link href={`/users/${author}`}>
-          <a>{author}</a>
-        </Link>
-        {` - ${date}`}
-      </span>
+      <span className="author">{`${author} - ${date}`}</span>
+    </div>
+    <div className="comments-container">
+      <h4>{comments.length} komment</h4>
+      {comments.map(c => (
+        <Comment {...c} />
+      ))}
     </div>
     <style jsx>{`
-      a {
-        cursor: pointer;
-        text-decoration: none;
-        color: var(--fg);
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
       .title,
       .text {
         margin: 0;
@@ -49,8 +38,6 @@ export default ({ id, title, text, tags, author, date }) => (
 
       .title {
         grid-area: title;
-        font-size: 1.5rem;
-        font-weight: var(--font-weight-bold);
       }
 
       .text {
@@ -65,8 +52,8 @@ export default ({ id, title, text, tags, author, date }) => (
         align-items: center;
       }
 
-      .karma {
-        user-select: none;
+      .comments-container {
+        grid-area: comments;
       }
 
       .info-container {
@@ -81,7 +68,7 @@ export default ({ id, title, text, tags, author, date }) => (
         border: 2px solid var(--accents-3);
         padding: var(--gap-double) var(--gap);
         display: grid;
-        grid-template-areas: "voting title" "voting text" "voting info";
+        grid-template-areas: "voting title" "voting text" "voting info" ". comments";
         grid-gap: 1rem;
       }
 
@@ -89,7 +76,7 @@ export default ({ id, title, text, tags, author, date }) => (
         margin-left: var(--gap-half);
       }
 
-      .info {
+      .author {
         font-size: 0.875rem;
       }
     `}</style>
