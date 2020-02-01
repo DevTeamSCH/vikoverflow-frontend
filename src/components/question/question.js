@@ -1,8 +1,9 @@
 import Button from "../button";
 import Tag from "./tag";
+import Comment from "./comment";
 import { ArrowDown, ArrowUp } from "react-feather";
 
-export default ({ title, text, tags, author, date }) => (
+export default ({ title, text, tags, author, date, comments }) => (
   <div className="container">
     <div className="voting-container">
       <Button iconOnly small tertiary>
@@ -22,6 +23,12 @@ export default ({ title, text, tags, author, date }) => (
         ))}
       </div>
       <span className="author">{`${author} - ${date}`}</span>
+    </div>
+    <div className="comments-container">
+      <h4>{comments.length} komment</h4>
+      {comments.map(c => (
+        <Comment {...c} />
+      ))}
     </div>
     <style jsx>{`
       .title,
@@ -45,6 +52,10 @@ export default ({ title, text, tags, author, date }) => (
         align-items: center;
       }
 
+      .comments-container {
+        grid-area: comments;
+      }
+
       .info-container {
         grid-area: info;
         display: flex;
@@ -57,7 +68,7 @@ export default ({ title, text, tags, author, date }) => (
         border: 2px solid var(--accents-3);
         padding: var(--gap-double) var(--gap);
         display: grid;
-        grid-template-areas: "voting title" "voting text" "voting info";
+        grid-template-areas: "voting title" "voting text" "voting info" ". comments";
         grid-gap: 1rem;
       }
 
