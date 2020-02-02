@@ -1,16 +1,18 @@
 import cn from "classnames";
 
+// TODO disabled state
+
 export default ({
   children,
+  onClick,
   small,
   secondary,
   tertiary,
-  iconOnly,
-  onClick
+  iconOnly
 }) => (
   <button
-    className={cn({ small, secondary, tertiary, iconOnly })}
     onClick={onClick}
+    className={cn({ small, secondary, tertiary, iconOnly })}
   >
     {children}
     <style jsx>{`

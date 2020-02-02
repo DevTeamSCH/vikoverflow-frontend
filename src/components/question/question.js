@@ -1,36 +1,44 @@
 import Button from "../button";
 import Tag from "./tag";
-import Comment from "./comment";
-import { ArrowDown, ArrowUp } from "react-feather";
+import Voting from "./voting";
+import { useState } from "react";
 
-export default ({ title, text, tags, author, date }) => (
+export default ({ title, text, tags, author, date, comments }) => {
+  const [userVote, setVote] = useState("none");
+
+  return (
   <div className="container">
     <div className="voting-container">
-      <Button iconOnly small tertiary>
-        <ArrowUp size={21} />
-      </Button>
-      <span className="karma">15</span>
-      <Button iconOnly small tertiary>
-        <ArrowDown size={21} />
-      </Button>
+        <Voting user_vote={userVote} vote_count={12} vote_changed={setVote} />
     </div>
-    <h2 className="title">{title}</h2>
+    <Link href={`/questions/${id}`}>
+      <a className="title">{title}</a>
+    </Link>
     <p className="text">{text}</p>
     <div className="info-container">
       <div className="tags">
         {tags.map(t => (
-          <Tag>{t}</Tag>
+          <Tag key={t.id} {...t} />
         ))}
       </div>
-      <span className="author">{`${author} - ${date}`}</span>
-    </div>
-    <div className="comments-container">
-      <h4>{comments.length} komment</h4>
-      {comments.map(c => (
-        <Comment {...c} />
-      ))}
+      <span className="info">
+        <Link href={`/users/${author}`}>
+          <a>{author}</a>
+        </Link>
+        {` - ${date}`}
+      </span>
     </div>
     <style jsx>{`
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--fg);
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
       .title,
       .text {
         margin: 0;
@@ -38,6 +46,8 @@ export default ({ title, text, tags, author, date }) => (
 
       .title {
         grid-area: title;
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-bold);
       }
 
       .text {
@@ -46,14 +56,6 @@ export default ({ title, text, tags, author, date }) => (
 
       .voting-container {
         grid-area: voting;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-
-      .comments-container {
-        grid-area: comments;
       }
 
       .info-container {
@@ -68,7 +70,7 @@ export default ({ title, text, tags, author, date }) => (
         border: 2px solid var(--accents-3);
         padding: var(--gap-double) var(--gap);
         display: grid;
-        grid-template-areas: "voting title" "voting text" "voting info" ". comments";
+        grid-template-areas: "voting title" "voting text" "voting info";
         grid-gap: 1rem;
       }
 
@@ -76,7 +78,7 @@ export default ({ title, text, tags, author, date }) => (
         margin-left: var(--gap-half);
       }
 
-      .author {
+      .info {
         font-size: 0.875rem;
       }
     `}</style>
