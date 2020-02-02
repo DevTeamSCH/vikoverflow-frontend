@@ -3,7 +3,7 @@ import Tag from "./tag";
 import Comment from "./comment";
 import { ArrowDown, ArrowUp } from "react-feather";
 
-export default ({ title, text, tags, author, date, comments }) => (
+export default ({ title, text, tags, author, date }) => (
   <div className="container">
     <div className="voting-container">
       <Button iconOnly small tertiary>
