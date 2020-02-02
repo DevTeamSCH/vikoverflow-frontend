@@ -3,11 +3,10 @@ import cn from "classnames";
 import { ArrowDown, ArrowUp } from "react-feather";
 
 export default ({ vote_count, user_vote, vote_changed, small, horizontal }) => {
-  let vertical = !horizontal;
-  let arrowSize = small ? 15 : 21;
+  const arrowSize = small ? 15 : 21;
 
   return (
-    <div className={cn({ horizontal, vertical })}>
+    <div className={cn({ horizontal })}>
       <Button
         iconOnly
         small
@@ -16,7 +15,7 @@ export default ({ vote_count, user_vote, vote_changed, small, horizontal }) => {
       >
         <ArrowUp
           size={arrowSize}
-          color={user_vote === "up" ? "orange" : "black"}
+          color={user_vote === "up" ? "var(--green)" : "var(--fg)"}
         />
       </Button>
       <span>{vote_count}</span>
@@ -28,20 +27,22 @@ export default ({ vote_count, user_vote, vote_changed, small, horizontal }) => {
       >
         <ArrowDown
           size={arrowSize}
-          color={user_vote === "down" ? "blue" : "black"}
+          color={user_vote === "down" ? "var(--red)" : "var(--fg)"}
         />
       </Button>
 
       <style jsx>{`
-        div.horizontal {
-          display: flex;
-          align-items: center;
-        }
-
-        div.vertical {
+        div {
+          color: var(--fg);
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
+          align-items: center;
+          height: 100%;
+        }
+
+        div.horizontal {
+          display: flex;
           align-items: center;
         }
       `}</style>
