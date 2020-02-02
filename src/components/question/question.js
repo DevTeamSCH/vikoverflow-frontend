@@ -1,8 +1,9 @@
 import Button from "../button";
 import Tag from "./tag";
+import Link from "next/link";
 import { ArrowDown, ArrowUp } from "react-feather";
 
-export default ({ title, text, tags, author, date }) => (
+export default ({ id, title, text, tags, author, date }) => (
   <div className="container">
     <div className="voting-container">
       <Button iconOnly small tertiary>
@@ -13,17 +14,34 @@ export default ({ title, text, tags, author, date }) => (
         <ArrowDown size={21} />
       </Button>
     </div>
-    <h2 className="title">{title}</h2>
+    <Link href={`/questions/${id}`}>
+      <a className="title">{title}</a>
+    </Link>
     <p className="text">{text}</p>
     <div className="info-container">
       <div className="tags">
         {tags.map(t => (
-          <Tag>{t}</Tag>
+          <Tag key={t.id} {...t} />
         ))}
       </div>
-      <span className="author">{`${author} - ${date}`}</span>
+      <span className="info">
+        <Link href={`/users/${author}`}>
+          <a>{author}</a>
+        </Link>
+        {` - ${date}`}
+      </span>
     </div>
     <style jsx>{`
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--fg);
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
       .title,
       .text {
         margin: 0;
@@ -31,6 +49,8 @@ export default ({ title, text, tags, author, date }) => (
 
       .title {
         grid-area: title;
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-bold);
       }
 
       .text {
@@ -43,6 +63,10 @@ export default ({ title, text, tags, author, date }) => (
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+      }
+
+      .karma {
+        user-select: none;
       }
 
       .info-container {
@@ -65,7 +89,7 @@ export default ({ title, text, tags, author, date }) => (
         margin-left: var(--gap-half);
       }
 
-      .author {
+      .info {
         font-size: 0.875rem;
       }
     `}</style>

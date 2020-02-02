@@ -1,7 +1,9 @@
-export default ({ placeholder }) => {
+// TODO disabled state
+
+export default ({ placeholder, value, onChange }) => {
   return (
     <>
-      <input placeholder={placeholder} />
+      <input placeholder={placeholder} value={value} onChange={onChange} />
       <style jsx>{`
         input {
           background: var(--accents-3);

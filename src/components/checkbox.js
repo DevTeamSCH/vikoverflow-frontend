@@ -1,63 +1,55 @@
-import { useState } from "react";
 import cn from "classnames";
 import { Check } from "react-feather";
 
-// TODO remove inner state
+// TODO disabled state
 
-export default ({ children }) => {
-  const [checked, setChecked] = useState(false);
-  const handleChange = e => {
-    setChecked(e.target.checked);
-  };
+export default ({ checked, onChange, children }) => (
+  <label>
+    <input checked={checked} onChange={onChange} type="checkbox" />
+    <span className={cn("check", { checked })}>
+      <Check strokeWidth={4} />
+    </span>
+    <div className="text">{children}</div>
+    <style jsx>{`
+      label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        user-select: none;
+        cursor: pointer;
+      }
 
-  return (
-    <label>
-      <input checked={checked} onChange={handleChange} type="checkbox" />
-      <span className={cn("check", { checked })}>
-        <Check strokeWidth={4} />
-      </span>
-      <div className="text">{children}</div>
-      <style jsx>{`
-        label {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          user-select: none;
-          cursor: pointer;
-        }
+      input {
+        display: none;
+      }
 
-        input {
-          display: none;
-        }
+      .check {
+        width: 20px;
+        height: 20px;
+        margin: 2px 0;
+        border: 3px solid var(--accents-2);
+        background: var(--bg);
+        color: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition);
+      }
 
-        .check {
-          width: 20px;
-          height: 20px;
-          margin: 2px;
-          border: 3px solid var(--accents-2);
-          background: var(--bg);
-          color: var(--bg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all var(--transition);
-        }
+      .check.checked {
+        background: var(--fg);
+        border-color: var(--fg);
+        color: var(--bg);
+      }
 
-        .check.checked {
-          background: var(--fg);
-          border-color: var(--fg);
-          color: var(--bg);
-        }
+      label:hover .check:not(.checked) {
+        background: var(--accents-3);
+        color: var(--accents-3);
+      }
 
-        label:hover .check:not(.checked) {
-          background: var(--accents-3);
-          color: var(--accents-3);
-        }
-
-        .text {
-          margin-left: var(--gap-half);
-        }
-      `}</style>
-    </label>
-  );
-};
+      .text {
+        margin-left: var(--gap-half);
+      }
+    `}</style>
+  </label>
+);
