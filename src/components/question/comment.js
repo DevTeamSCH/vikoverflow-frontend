@@ -1,5 +1,8 @@
-import Button from "../button";
-import { ArrowDown, ArrowUp } from "react-feather";
+import Vote from "./vote";
+import Link from "next/link";
+
+// TODO refactor to css grid
+// TODO refactor link (a) component
 
 export default ({
   id,
@@ -14,35 +17,38 @@ export default ({
     <div className="comment-text">{text}</div>
     <div className="comment-meta">
       <div className="voting-container">
-        <Button iconOnly small tertiary>
-          <ArrowUp size={15} />
-        </Button>
-        <span className="karma">15</span>
-        <Button iconOnly small tertiary>
-          <ArrowDown size={15} />
-        </Button>
+        <Vote horizontal count={32} />
       </div>
       <div className="meta-text">
-        <span className="owner">- {owner}</span>
-        <span className="date"> - {created_at}</span>
-        {updated_at && (
-          <span className="date"> (Szerkesztve: {updated_at})</span>
+        <Link href={`/users/${owner}`}>
+          <a>{owner}</a>
+        </Link>
+        {" - "}
+        {updated_at ? (
+          <>
+            {updated_at} <em>(szerkesztve)</em>
+          </>
+        ) : (
+          created_at
         )}
       </div>
     </div>
     <style jsx>{`
-      .date {
-        color: var(--accents-2);
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--fg);
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
 
       .container {
-        font-size: 14px;
+        font-size: 0.875rem;
+        border-top: 2px solid var(--accents-3);
         margin-top: var(--gap);
         padding-top: var(--gap);
-      }
-
-      .container + .container {
-        border-top: 1px var(--accents-3) solid;
       }
 
       .comment-text {
@@ -55,7 +61,7 @@ export default ({
       }
 
       .meta-text {
-        flex-grow: 1;
+        margin-left: auto;
       }
 
       .voting-container {

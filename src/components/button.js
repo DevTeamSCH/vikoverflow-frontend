@@ -6,13 +6,14 @@ export default ({
   children,
   onClick,
   small,
+  compact,
   secondary,
   tertiary,
   iconOnly
 }) => (
   <button
     onClick={onClick}
-    className={cn({ small, secondary, tertiary, iconOnly })}
+    className={cn({ small, compact, secondary, tertiary, iconOnly })}
   >
     {children}
     <style jsx>{`
@@ -77,6 +78,10 @@ export default ({
 
       button.iconOnly > :global(svg) {
         margin-right: 0;
+      }
+
+      button.compact {
+        padding: calc(0.625 * var(--gap-half));
       }
     `}</style>
   </button>

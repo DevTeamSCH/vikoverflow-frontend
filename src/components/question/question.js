@@ -1,15 +1,27 @@
+import { useState } from "react";
 import Link from "next/link";
 import Tag from "./tag";
-import Voting from "./voting";
-import { useState } from "react";
+import Comment from "./comment";
+import Vote, { VOTE_STATE as VOTE } from "./vote";
+
+// TODO refactor link (a) component
 
 export default ({ id, title, text, tags, author, date, comments }) => {
-  const [userVote, setVote] = useState("none");
+  const [userVote, setVote] = useState(VOTE.NONE);
+  const handleUpvote = () =>
+    setVote(userVote === VOTE.UP ? VOTE.NONE : VOTE.UP);
+  const handleDownvote = () =>
+    setVote(userVote === VOTE.DOWN ? VOTE.NONE : VOTE.DOWN);
 
   return (
     <div className="container">
       <div className="voting-container">
-        <Voting user_vote={userVote} vote_count={12} vote_changed={setVote} />
+        <Vote
+          value={userVote}
+          count={12}
+          onUpvote={handleUpvote}
+          onDownvote={handleDownvote}
+        />
       </div>
       <Link href={`/questions/${id}`}>
         <a className="title">{title}</a>
@@ -28,6 +40,22 @@ export default ({ id, title, text, tags, author, date, comments }) => {
           {` - ${date}`}
         </span>
       </div>
+      {comments?.length > 0 && (
+        <div className="comments-container">
+          {comments.map(c => (
+            <Comment key={c.id} {...c} />
+          ))}
+        </div>
+      )}
+      {/* removing bottom grid gap if comment container is empty by not listing it as an area */}
+      <style jsx>{`
+        .container {
+          grid-template-areas: "voting title" "voting text" "voting info" ${comments?.length >
+            0
+              ? `". comments"`
+              : ""};
+        }
+      `}</style>
       <style jsx>{`
         a {
           cursor: pointer;
@@ -58,20 +86,24 @@ export default ({ id, title, text, tags, author, date, comments }) => {
           grid-area: voting;
         }
 
-        .info-container {
-          grid-area: info;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
+        .comments-container {
+          grid-area: comments;
+          margin-top: 2rem;
         }
 
         .container {
           border: 2px solid var(--accents-3);
           padding: var(--gap-double) var(--gap);
           display: grid;
-          grid-template-areas: "voting title" "voting text" "voting info";
           grid-gap: 1rem;
+        }
+
+        .info-container {
+          grid-area: info;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
         }
 
         .tags > :global(*:not(:first-child)) {
