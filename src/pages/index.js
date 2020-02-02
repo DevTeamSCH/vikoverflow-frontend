@@ -29,6 +29,13 @@ const questions = [
         owner: "test2",
         created_at: "2020-01-01 12:34:56"
       }
+    ],
+    answers: [
+      {
+        id: 1,
+        text: "asdasdas",
+        owner: "asdasd"
+      }
     ]
   },
   {

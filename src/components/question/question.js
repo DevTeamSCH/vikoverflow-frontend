@@ -6,7 +6,16 @@ import Vote, { VOTE_STATE as VOTE } from "./vote";
 
 // TODO refactor link (a) component
 
-export default ({ id, title, text, tags, author, date, comments }) => {
+export default ({
+  id,
+  title,
+  text,
+  tags,
+  author,
+  date,
+  comments,
+  showComments = false
+}) => {
   const [userVote, setVote] = useState(VOTE.NONE);
   const handleUpvote = () =>
     setVote(userVote === VOTE.UP ? VOTE.NONE : VOTE.UP);
@@ -40,7 +49,7 @@ export default ({ id, title, text, tags, author, date, comments }) => {
           {` - ${date}`}
         </span>
       </div>
-      {comments?.length > 0 && (
+      {showComments && comments?.length > 0 && (
         <div className="comments-container">
           {comments.map(c => (
             <Comment key={c.id} {...c} />
@@ -50,8 +59,8 @@ export default ({ id, title, text, tags, author, date, comments }) => {
       {/* removing bottom grid gap if comment container is empty by not listing it as an area */}
       <style jsx>{`
         .container {
-          grid-template-areas: "voting title" "voting text" "voting info" ${comments?.length >
-            0
+          grid-template-areas: "voting title" "voting text" "voting info" ${showComments &&
+            comments?.length > 0
               ? `". comments"`
               : ""};
         }
@@ -111,7 +120,7 @@ export default ({ id, title, text, tags, author, date, comments }) => {
         }
 
         .info {
-          font-size: 0.875rem;
+          font-size: var(--font-size-small);
         }
       `}</style>
     </div>

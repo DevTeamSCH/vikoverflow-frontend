@@ -24,6 +24,7 @@
   --font-sans: "Inter", sans-serif;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
+  --font-size-small: 0.875rem;
 
   /* Transitions */
   --transition: 0.1s ease-in-out;

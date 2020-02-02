@@ -45,7 +45,7 @@ export default ({
       }
 
       .container {
-        font-size: 0.875rem;
+        font-size: var(--font-size-small);
         border-top: 2px solid var(--accents-3);
         margin-top: var(--gap);
         padding-top: var(--gap);
