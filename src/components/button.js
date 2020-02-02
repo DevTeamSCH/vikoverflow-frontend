@@ -1,7 +1,17 @@
 import cn from "classnames";
 
-export default ({ children, small, secondary, tertiary, iconOnly }) => (
-  <button className={cn({ small, secondary, tertiary, iconOnly })}>
+export default ({
+  children,
+  small,
+  secondary,
+  tertiary,
+  iconOnly,
+  onClick
+}) => (
+  <button
+    className={cn({ small, secondary, tertiary, iconOnly })}
+    onClick={onClick}
+  >
     {children}
     <style jsx>{`
       button {
