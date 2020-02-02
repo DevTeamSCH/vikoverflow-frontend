@@ -1,47 +1,69 @@
 import Page from "../components/page";
-import { QuestionListItem, QuestionRow } from "../components/question";
+import Question, { QuestionRow } from "../components/question";
 
 const questions = [
   {
     id: 1,
     title: "This is the long title of a very important question",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
     tags: [
       { id: "javascript", name: "javascript" },
       { id: "frontend", name: "frontend" },
       { id: "ekezetesbetu", name: "ékezetesbetu" }
     ],
-    owner: "vassbence",
+    author: "vassbence",
     date: "2020/01/10",
-    answer_count: 2,
-    answered: true,
-    vote_count: 12
+    comments: [
+      {
+        id: 1,
+        text: "Test comment 1",
+        owner: "test-user",
+        updated_at: "2020-02-01 12:31:00",
+        created_at: "2020-01-01 12:34:56"
+      },
+      {
+        id: 2,
+        text:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
+        owner: "test2",
+        created_at: "2020-01-01 12:34:56"
+      }
+    ],
+    answers: [
+      {
+        id: 1,
+        text: "asdasdas",
+        owner: "asdasd"
+      }
+    ]
   },
   {
     id: 2,
     title: "This is the long title of a very important question",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
     tags: [
       { id: "javascript", name: "javascript" },
       { id: "frontend", name: "frontend" },
       { id: "ekezetesbetu", name: "ékezetesbetu" }
     ],
-    owner: "vassbence",
-    date: "2020/01/10",
-    answer_count: 12,
-    answered: true,
-    vote_count: 65
+    author: "vassbence",
+    date: "2020/01/10"
   },
   {
     id: 3,
     title: "This is the long title of a very important question",
+    text:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
     tags: [
       { id: "javascript", name: "javascript" },
       { id: "frontend", name: "frontend" },
       { id: "ekezetesbetu", name: "ékezetesbetu" }
     ],
-    owner: "vassbence",
-    answer_count: 1,
-    answered: false,
-    vote_count: 12
+    author: "vassbence",
+    date: "2020/01/10",
+    comments: []
   }
 ];
 
@@ -50,7 +72,7 @@ export default () => (
     <div className="questions">
       {questions.map(q => (
         <QuestionRow key={q.id}>
-          <QuestionListItem {...q} />
+          <Question {...q} />
         </QuestionRow>
       ))}
     </div>

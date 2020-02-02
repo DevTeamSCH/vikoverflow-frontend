@@ -47,7 +47,7 @@ export default ({
 
       button.small {
         padding: calc(0.625 * var(--gap)) calc(0.875 * var(--gap));
-        font-size: 0.875rem;
+        font-size: var(--font-size-small);
       }
 
       button.secondary {
