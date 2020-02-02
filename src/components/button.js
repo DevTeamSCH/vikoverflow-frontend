@@ -1,7 +1,20 @@
 import cn from "classnames";
 
-export default ({ children, small, secondary, tertiary, iconOnly }) => (
-  <button className={cn({ small, secondary, tertiary, iconOnly })}>
+// TODO disabled state
+
+export default ({
+  children,
+  onClick,
+  small,
+  compact,
+  secondary,
+  tertiary,
+  iconOnly
+}) => (
+  <button
+    onClick={onClick}
+    className={cn({ small, compact, secondary, tertiary, iconOnly })}
+  >
     {children}
     <style jsx>{`
       button {
@@ -65,6 +78,10 @@ export default ({ children, small, secondary, tertiary, iconOnly }) => (
 
       button.iconOnly > :global(svg) {
         margin-right: 0;
+      }
+
+      button.compact {
+        padding: calc(0.625 * var(--gap-half));
       }
     `}</style>
   </button>
