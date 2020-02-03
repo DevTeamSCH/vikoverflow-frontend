@@ -46,7 +46,6 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
           color: var(--fg);
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
           align-items: center;
           height: 100%;
         }
