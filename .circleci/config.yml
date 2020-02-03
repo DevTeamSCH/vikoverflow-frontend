@@ -9,5 +9,8 @@ jobs:
           name: install-dependecies
           command: yarn install
       - run:
-          name: run-linter
+          name: run-prettier
           command: yarn run prettier -c src/**/*.{js,css}
+      - run:
+          name: run-eslint
+          command: yarn run eslint src/**/*.js
