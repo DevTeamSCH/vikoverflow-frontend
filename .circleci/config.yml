@@ -1,0 +1,13 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: install-dependecies
+          command: yarn install
+      - run:
+          name: run-linter
+          command: yarn run prettier -c src/**/*.{js,css}
