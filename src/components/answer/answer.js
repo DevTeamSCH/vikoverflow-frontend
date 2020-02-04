@@ -79,6 +79,13 @@ export default ({
 
         .voting-container {
           grid-area: voting;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .voting-container > :global(div) {
+          height: auto;
         }
 
         .comments-container {
