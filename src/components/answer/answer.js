@@ -1,9 +1,8 @@
 import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import { useState } from "react";
+import cn from "classnames";
 import Link from "next/link";
-import Tag from "../question/tag";
 import Comment from "../question/comment";
-import { Check } from "react-feather";
 
 export default ({
   id,
@@ -21,7 +20,12 @@ export default ({
     setVote(userVote === VOTE.DOWN ? VOTE.NONE : VOTE.DOWN);
 
   return (
-    <div className="container">
+    <div
+      className={cn("container", {
+        hasComment: comments?.length > 0,
+        isAccepted: is_accepted
+      })}
+    >
       <div className="voting-container">
         <Vote
           value={userVote}
@@ -29,35 +33,23 @@ export default ({
           onUpvote={handleUpvote}
           onDownvote={handleDownvote}
         />
-        {is_accepted ? <Check color="green" /> : ""}
       </div>
       <p className="text">{text}</p>
       <div className="info-container">
-        <span className="info">
+        <div className="info">
           <Link href={`/users/${owner}`}>
             <a>{owner}</a>
           </Link>
           {` - 1970-01-01`}
-        </span>
+        </div>
       </div>
       {comments?.length > 0 && (
         <div className="comments-container">
           {comments.map(c => (
-            <Comment key={c.id} {...c} />
+            <Comment isParentAccepted={is_accepted} key={c.id} {...c} />
           ))}
         </div>
       )}
-      {/* removing bottom grid gap if comment container is empty by not listing it as an area */}
-      <style jsx>{`
-        .container {
-          grid-template-areas: "voting text" "voting info" ${comments?.length >
-            0
-              ? `". comments"`
-              : ""};
-          grid-template-columns: auto 1fr;
-        }
-      `}</style>
-
       <style jsx>{`
         a {
           cursor: pointer;
@@ -91,10 +83,24 @@ export default ({
           padding: var(--gap-double) var(--gap);
           display: grid;
           grid-gap: 1rem;
+          grid-template-areas: "voting text" "voting info";
+          grid-template-columns: auto 1fr;
+        }
+
+        .container.hasComment {
+          grid-template-areas: "voting text" "voting info" ". comments";
+        }
+
+        .container.isAccepted {
+          border-color: var(--green);
+          background: var(--green-accent);
         }
 
         .info-container {
           grid-area: info;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
         }
 
         .info {
