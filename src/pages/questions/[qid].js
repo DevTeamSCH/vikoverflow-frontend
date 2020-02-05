@@ -93,10 +93,9 @@ QuestionPage.getInitialProps = async ({ query }) => {
       },
       {
         id: 2,
-        text:
-          "Short answer",
+        text: "Short answer",
         owner: "asdasd",
-        is_accepted: false,
+        is_accepted: false
       }
     ]
   };
