@@ -11,7 +11,7 @@ export default ({
   vote_count,
   user_vote,
   is_accepted,
-  comments
+  comments = []
 }) => {
   const [userVote, setVote] = useState(VOTE.NONE);
   const handleUpvote = () =>
@@ -22,7 +22,7 @@ export default ({
   return (
     <div
       className={cn("container", {
-        hasComment: comments?.length > 0,
+        hasComment: comments.length > 0,
         isAccepted: is_accepted
       })}
     >

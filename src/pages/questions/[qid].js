@@ -48,7 +48,7 @@ QuestionPage.getInitialProps = async ({ query }) => {
         { id: "frontend", name: "frontend" },
         { id: "ekezetesbetu", name: "ékezetesbetu" }
       ],
-      author: "vassbence",
+      owner: "vassbence",
       date: "2020/01/10",
       comments: [
         {

@@ -1,5 +1,5 @@
 import Page from "../components/page";
-import { QuestionListItem, QuestionRow } from "../components/question";
+import Question, { QuestionRow } from "../components/question";
 
 const questions = [
   {
@@ -50,7 +50,7 @@ export default () => (
     <div className="questions">
       {questions.map(q => (
         <QuestionRow key={q.id}>
-          <QuestionListItem {...q} />
+          <Question {...q} />
         </QuestionRow>
       ))}
     </div>
