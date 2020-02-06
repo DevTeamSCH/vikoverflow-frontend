@@ -1,8 +1,11 @@
 import Vote from "./vote";
 import Link from "next/link";
+import cn from "classnames";
 
 // TODO refactor to css grid
 // TODO refactor link (a) component
+
+// TODO refactor, should not set border top for himself as its ugly to pass down isParentAccepted
 
 export default ({
   id,
@@ -11,9 +14,10 @@ export default ({
   updated_at,
   owner,
   vote_count,
-  user_vote
+  user_vote,
+  isParentAccepted
 }) => (
-  <div className="container">
+  <div className={cn("container", { acceptedParent: isParentAccepted })}>
     <div className="comment-text">{text}</div>
     <div className="comment-meta">
       <div className="voting-container">
@@ -45,10 +49,14 @@ export default ({
       }
 
       .container {
-        font-size: 0.875rem;
+        font-size: var(--font-size-small);
         border-top: 2px solid var(--accents-3);
         margin-top: var(--gap);
         padding-top: var(--gap);
+      }
+
+      .container.acceptedParent {
+        border-color: var(--green);
       }
 
       .comment-text {

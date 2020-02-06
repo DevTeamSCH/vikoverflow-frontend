@@ -46,8 +46,8 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
           color: var(--fg);
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
           align-items: center;
+          justify-content: space-evenly;
           height: 100%;
         }
 
@@ -59,6 +59,13 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
 
         div.horizontal > :global(*:not(:first-child)) {
           margin-left: var(--gap-half);
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+          /* Matches vote buttons */
+          min-height: 41px;
         }
       `}</style>
     </div>
