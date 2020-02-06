@@ -1,19 +1,21 @@
 import { useState } from "react";
 import Link from "next/link";
+import cn from "classnames";
 import Tag from "./tag";
 import Comment from "./comment";
 import Vote, { VOTE_STATE as VOTE } from "./vote";
 
 // TODO refactor link (a) component
 
+// TODO if(...) {return()} instead of && flags
 export default ({
   id,
   title,
   text,
   tags,
-  author,
+  owner,
   date,
-  comments,
+  comments = [],
   showComments = false
 }) => {
   const [userVote, setVote] = useState(VOTE.NONE);
@@ -23,7 +25,12 @@ export default ({
     setVote(userVote === VOTE.DOWN ? VOTE.NONE : VOTE.DOWN);
 
   return (
-    <div className="container">
+    <div
+      className={cn("container", {
+        hasComment: comments.length > 0,
+        isListItem: !text
+      })}
+    >
       <div className="voting-container">
         <Vote
           value={userVote}
@@ -35,7 +42,7 @@ export default ({
       <Link href={`/questions/${id}`}>
         <a className="title">{title}</a>
       </Link>
-      <p className="text">{text}</p>
+      {text && <p className="text">{text}</p>}
       <div className="info-container">
         <div className="tags">
           {tags.map(t => (
@@ -43,8 +50,8 @@ export default ({
           ))}
         </div>
         <span className="info">
-          <Link href={`/users/${author}`}>
-            <a>{author}</a>
+          <Link href={`/users/${owner}`}>
+            <a>{owner}</a>
           </Link>
           {` - ${date}`}
         </span>
@@ -56,15 +63,6 @@ export default ({
           ))}
         </div>
       )}
-      {/* removing bottom grid gap if comment container is empty by not listing it as an area */}
-      <style jsx>{`
-        .container {
-          grid-template-areas: "voting title" "voting text" "voting info" ${showComments &&
-            comments?.length > 0
-              ? `". comments"`
-              : ""};
-        }
-      `}</style>
       <style jsx>{`
         a {
           cursor: pointer;
@@ -105,6 +103,15 @@ export default ({
           padding: var(--gap-double) var(--gap);
           display: grid;
           grid-gap: 1rem;
+          grid-template-areas: "voting title" "voting text" "voting info";
+        }
+
+        .container.hasComment {
+          grid-template-areas: "voting title" "voting text" "voting info" ". comments";
+        }
+
+        .container.isListItem {
+          grid-template-areas: "voting title" "voting info";
         }
 
         .info-container {

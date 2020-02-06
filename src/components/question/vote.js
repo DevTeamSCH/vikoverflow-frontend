@@ -2,6 +2,8 @@ import Button from "../button";
 import cn from "classnames";
 import { ArrowDown, ArrowUp } from "react-feather";
 
+// TODO color
+
 export const VOTE_STATE = {
   UP: "up",
   NONE: "none",
