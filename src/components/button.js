@@ -28,7 +28,7 @@ export default ({
         font-size: inherit;
         font-weight: var(--font-weight-medium);
         cursor: pointer;
-        transition: all var(--transition);
+        transition: background var(--transition), border-color var(--transition);
         line-height: inherit;
       }
 

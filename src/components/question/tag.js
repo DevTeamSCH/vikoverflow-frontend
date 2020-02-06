@@ -11,7 +11,7 @@ export default ({ id, name }) => (
           background: var(--accents-3);
           user-select: none;
           cursor: pointer;
-          transition: all var(--transition);
+          transition: background var(--transition);
           text-decoration: none;
           color: var(--fg);
         }

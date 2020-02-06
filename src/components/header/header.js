@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import cn from "classnames";
-import Logo from "./logo";
-import Button from "./button";
+import Logo from "../logo";
+import Button from "../button";
 import { User } from "react-feather";
+import Toggle from "./toggle-button";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -18,10 +19,17 @@ export default () => {
       <div className="content">
         <Logo />
         <nav className={cn({ active })}>
-          <Button small tertiary>
-            <User size={21} />
-            Belépés
-          </Button>
+          <ul>
+            <li>
+              <Toggle />
+            </li>
+            <li>
+              <Button small tertiary>
+                <User size={21} />
+                Belépés
+              </Button>
+            </li>
+          </ul>
         </nav>
         <button
           onClick={() => toggleMenu()}
@@ -49,6 +57,23 @@ export default () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          align-items: center;
+        }
+
+        li {
+          display: flex;
+          align-items: center;
+        }
+
+        li + li {
+          margin-left: 1rem;
         }
 
         .burger {
@@ -99,6 +124,15 @@ export default () => {
             background: var(--bg);
             padding: calc(6 * var(--gap)) var(--gap) 0;
             z-index: 2;
+          }
+
+          li {
+            display: block;
+          }
+
+          li + li {
+            margin-left: 0;
+            margin-top: 1rem;
           }
 
           .burger,
