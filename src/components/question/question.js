@@ -8,7 +8,6 @@ import Vote, { VOTE_STATE as VOTE } from "./vote";
 // TODO refactor link (a) component
 
 // TODO if(...) {return()} instead of && flags
-
 export default ({
   id,
   title,
