@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cn from "classnames";
-import Link from "next/link";
 import { Check } from "react-feather";
+import Link from "../link";
 
 import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import Comment from "../question/comment";
@@ -40,9 +40,7 @@ export default ({
       <p className="text">{text}</p>
       <div className="info-container">
         <div className="info">
-          <Link href={`/users/${owner}`}>
-            <a>{owner}</a>
-          </Link>
+          <Link href={`/users/${owner}`}>{owner}</Link>
           {` - 1970-01-01`}
         </div>
       </div>
@@ -54,16 +52,6 @@ export default ({
         </div>
       )}
       <style jsx>{`
-        a {
-          cursor: pointer;
-          text-decoration: none;
-          color: var(--fg);
-        }
-
-        a:hover {
-          text-decoration: underline;
-        }
-
         .text {
           margin: 0;
         }
@@ -94,7 +82,7 @@ export default ({
           display: grid;
           grid-gap: 1rem;
           grid-template-areas: "voting text" "voting info";
-          grid-template-columns: auto 1fr;
+          grid-template-columns: 41px 1fr;
         }
 
         .container.hasComment {
