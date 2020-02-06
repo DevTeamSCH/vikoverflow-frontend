@@ -12,7 +12,7 @@ export default ({
   id,
   title,
   text,
-  tags,
+  tags = [],
   owner,
   date,
   comments = [],
@@ -50,9 +50,13 @@ export default ({
           ))}
         </div>
         <span className="info">
-          <Link href={`/users/${owner}`}>
-            <a>{owner}</a>
-          </Link>
+          {owner ? (
+            <Link href={`/users/${owner.id}`}>
+              <a>{owner.full_name}</a>
+            </Link>
+          ) : (
+            <span>Anonymous</span>
+          )}
           {` - ${date}`}
         </span>
       </div>
