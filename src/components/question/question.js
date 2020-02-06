@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Link from "next/link";
 import cn from "classnames";
 import Tag from "./tag";
 import Comment from "./comment";
 import Vote, { VOTE_STATE as VOTE } from "./vote";
-
-// TODO refactor link (a) component
+import Link from "../link";
 
 // TODO if(...) {return()} instead of && flags
+
+// TODO showComment flag is useless ?
 
 export default ({
   id,
@@ -40,8 +40,8 @@ export default ({
           onDownvote={handleDownvote}
         />
       </div>
-      <Link href={`/questions/${id}`}>
-        <a className="title">{title}</a>
+      <Link className="title" href={`/questions/${id}`}>
+        {title}
       </Link>
       {text && <p className="text">{text}</p>}
       <div className="info-container">
@@ -51,13 +51,11 @@ export default ({
           ))}
         </div>
         <span className="info">
-          <Link href={`/users/${owner}`}>
-            <a>{owner}</a>
-          </Link>
+          <Link href={`/users/${owner}`}>{owner}</Link>
           {` - ${date}`}
         </span>
       </div>
-      {showComments && comments?.length > 0 && (
+      {showComments && (
         <div className="comments-container">
           {comments.map(c => (
             <Comment key={c.id} {...c} />
@@ -65,22 +63,12 @@ export default ({
         </div>
       )}
       <style jsx>{`
-        a {
-          cursor: pointer;
-          text-decoration: none;
-          color: var(--fg);
-        }
-
-        a:hover {
-          text-decoration: underline;
-        }
-
-        .title,
+        .container :global(.title),
         .text {
           margin: 0;
         }
 
-        .title {
+        .container :global(.title) {
           grid-area: title;
           font-size: 1.5rem;
           font-weight: var(--font-weight-bold);
@@ -104,6 +92,7 @@ export default ({
           padding: var(--gap-double) var(--gap);
           display: grid;
           grid-gap: 1rem;
+          grid-template-columns: 41px 1fr;
           grid-template-areas: "voting title" "voting text" "voting info";
         }
 

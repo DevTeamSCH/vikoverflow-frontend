@@ -1,8 +1,8 @@
 import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import { useState } from "react";
 import cn from "classnames";
-import Link from "next/link";
 import Comment from "../question/comment";
+import Link from "../link";
 
 export default ({
   id,
@@ -37,9 +37,7 @@ export default ({
       <p className="text">{text}</p>
       <div className="info-container">
         <div className="info">
-          <Link href={`/users/${owner}`}>
-            <a>{owner}</a>
-          </Link>
+          <Link href={`/users/${owner}`}>{owner}</Link>
           {` - 1970-01-01`}
         </div>
       </div>
@@ -51,16 +49,6 @@ export default ({
         </div>
       )}
       <style jsx>{`
-        a {
-          cursor: pointer;
-          text-decoration: none;
-          color: var(--fg);
-        }
-
-        a:hover {
-          text-decoration: underline;
-        }
-
         .text {
           margin: 0;
         }

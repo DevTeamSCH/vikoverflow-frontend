@@ -4,6 +4,8 @@ import Answer, { AnswerRow } from "../../components/answer";
 
 // TODO pageTitle should be the title of the question (?) but definitely not plain
 
+// TODO owner?
+
 const QuestionPage = ({ question, answers }) => {
   return (
     <Page>
@@ -65,7 +67,7 @@ QuestionPage.getInitialProps = async ({ query }) => {
           owner: "test2",
           created_at: "2020-01-01 12:34:56"
         }
-      ]
+      ],
     },
     answers: [
       {
