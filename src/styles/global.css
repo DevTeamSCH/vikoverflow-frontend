@@ -1,12 +1,12 @@
 @import url("https://rsms.me/inter/inter.css");
 
 :root {
-  /* Dark mode colors */
-  --fg: #fff;
-  --bg: #141414;
-  --accents-1: #e2e2e2;
-  --accents-2: #545454;
-  --accents-3: #292929;
+  /* Light mode colors */
+  --fg: #000;
+  --bg: #fff;
+  --accents-1: #333;
+  --accents-2: #ccc;
+  --accents-3: #dedede;
 
   /* Static colors */
   --green: #21a453;
@@ -34,6 +34,15 @@
   /* 1: @media (max-width: 600px) */
 }
 
+.dark {
+  /* Dark mode colors */
+  --fg: #fff;
+  --bg: #141414;
+  --accents-1: #e2e2e2;
+  --accents-2: #545454;
+  --accents-3: #292929;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -50,15 +59,4 @@ body {
 body {
   background: var(--bg);
   color: var(--fg);
-}
-
-/* Light mode colors */
-@media (prefers-color-scheme: light) {
-  :root {
-    --fg: #000;
-    --bg: #fff;
-    --accents-1: #333;
-    --accents-2: #ccc;
-    --accents-3: #dedede;
-  }
 }

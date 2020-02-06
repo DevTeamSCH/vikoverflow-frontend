@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import cn from "classnames";
-import Logo from "./logo";
-import Button from "./button";
+import Logo from "../logo";
+import Button from "../button";
 import { User } from "react-feather";
+import Toggle from "./toggle";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -18,6 +19,7 @@ export default () => {
       <div className="content">
         <Logo />
         <nav className={cn({ active })}>
+          <Toggle />
           <Button small tertiary>
             <User size={21} />
             Belépés
