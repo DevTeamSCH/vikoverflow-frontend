@@ -1,7 +1,9 @@
-import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import { useState } from "react";
 import cn from "classnames";
-import Link from "next/link";
+import { Check } from "react-feather";
+import Link from "../link";
+
+import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import Comment from "../question/comment";
 
 export default ({
@@ -33,13 +35,12 @@ export default ({
           onUpvote={handleUpvote}
           onDownvote={handleDownvote}
         />
+        {is_accepted ? <Check style={{ color: "var(--green)" }} /> : ""}
       </div>
       <p className="text">{text}</p>
       <div className="info-container">
         <div className="info">
-          <Link href={`/users/${owner}`}>
-            <a>{owner}</a>
-          </Link>
+          <Link href={`/users/${owner}`}>{owner}</Link>
           {` - 1970-01-01`}
         </div>
       </div>
@@ -51,16 +52,6 @@ export default ({
         </div>
       )}
       <style jsx>{`
-        a {
-          cursor: pointer;
-          text-decoration: none;
-          color: var(--fg);
-        }
-
-        a:hover {
-          text-decoration: underline;
-        }
-
         .text {
           margin: 0;
         }
@@ -71,6 +62,13 @@ export default ({
 
         .voting-container {
           grid-area: voting;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .voting-container > :global(svg) {
+          margin-top: var(--gap-half);
         }
 
         .comments-container {
@@ -84,7 +82,7 @@ export default ({
           display: grid;
           grid-gap: 1rem;
           grid-template-areas: "voting text" "voting info";
-          grid-template-columns: auto 1fr;
+          grid-template-columns: 41px 1fr;
         }
 
         .container.hasComment {
@@ -93,7 +91,6 @@ export default ({
 
         .container.isAccepted {
           border-color: var(--green);
-          background: var(--green-accent);
         }
 
         .info-container {

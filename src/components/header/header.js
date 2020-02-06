@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import cn from "classnames";
-import Logo from "./logo";
-import Button from "./button";
+import Logo from "../logo";
+import Button from "../button";
 import { User } from "react-feather";
-import useAuth from "../lib/auth-hook";
+import Toggle from "./toggle";
 import { useRouter } from "next/router";
+import useAuth from "../../lib/auth-hook";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -22,6 +23,7 @@ export default () => {
       <div className="content">
         <Logo />
         <nav className={cn({ active })}>
+          <Toggle />
           {user ? (
             <div>
               <User size={21} />

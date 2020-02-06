@@ -50,7 +50,6 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
           flex-direction: column;
           align-items: center;
           justify-content: space-evenly;
-          height: 100%;
         }
 
         div.horizontal {
