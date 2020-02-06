@@ -1,7 +1,9 @@
-import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import { useState } from "react";
 import cn from "classnames";
 import Link from "next/link";
+import { Check } from "react-feather";
+
+import Vote, { VOTE_STATE as VOTE } from "../question/vote";
 import Comment from "../question/comment";
 
 export default ({
@@ -33,6 +35,7 @@ export default ({
           onUpvote={handleUpvote}
           onDownvote={handleDownvote}
         />
+        {is_accepted ? <Check style={{ color: "var(--green)" }} /> : ""}
       </div>
       <p className="text">{text}</p>
       <div className="info-container">
@@ -71,6 +74,13 @@ export default ({
 
         .voting-container {
           grid-area: voting;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .voting-container > :global(svg) {
+          margin-top: var(--gap-half);
         }
 
         .comments-container {
@@ -93,7 +103,6 @@ export default ({
 
         .container.isAccepted {
           border-color: var(--green);
-          background: var(--green-accent);
         }
 
         .info-container {
