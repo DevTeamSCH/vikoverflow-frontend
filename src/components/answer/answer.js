@@ -28,7 +28,7 @@ export default ({
         isAccepted: is_accepted
       })}
     >
-      <div className='voting-container'>
+      <div className="voting-container">
         <Vote
           value={userVote}
           count={12}
@@ -37,9 +37,9 @@ export default ({
         />
         {is_accepted ? <Check style={{ color: "var(--green)" }} /> : ""}
       </div>
-      <p className='text'>{text}</p>
-      <div className='info-container'>
-        <div className='info'>
+      <p className="text">{text}</p>
+      <div className="info-container">
+        <div className="info">
           <Link href={`/users/${owner}`}>
             <a>{owner}</a>
           </Link>
@@ -47,7 +47,7 @@ export default ({
         </div>
       </div>
       {comments?.length > 0 && (
-        <div className='comments-container'>
+        <div className="comments-container">
           {comments.map(c => (
             <Comment isParentAccepted={is_accepted} key={c.id} {...c} />
           ))}
