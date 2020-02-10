@@ -1,19 +1,20 @@
 import Page from "../../components/page";
 import Question from "../../components/question";
 import Answer, { AnswerRow } from "../../components/answer";
+import fetchWrapper from "../../lib/fetch-wrapper";
 
 // TODO pageTitle should be the title of the question (?) but definitely not plain
 
-const QuestionPage = ({ question, answers }) => {
+const QuestionPage = ({ question }) => {
   return (
     <Page>
       <div className="container">
         <Question showComments {...question} />
-        {answers?.length ? (
+        {question.answers?.length ? (
           <>
-            <h2>{answers.length} válasz</h2>
+            <h2>{question.answers.length} válasz</h2>
             <div className="answers">
-              {answers.map(a => (
+              {question.answers.map(a => (
                 <AnswerRow key={a.id}>
                   <Answer {...a} />
                 </AnswerRow>
@@ -33,72 +34,11 @@ const QuestionPage = ({ question, answers }) => {
   );
 };
 
-QuestionPage.getInitialProps = async ({ query }) => {
-  // ID will be in:
-  // const { qid } = query;
+QuestionPage.getInitialProps = async ({ query, req, res }) => {
+  const { qid } = query;
 
-  return {
-    question: {
-      id: 1,
-      title: "This is the long title of a very important question",
-      text:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
-      tags: [
-        { id: "javascript", name: "javascript" },
-        { id: "frontend", name: "frontend" },
-        { id: "ekezetesbetu", name: "ékezetesbetu" }
-      ],
-      owner: "vassbence",
-      date: "2020/01/10",
-      comments: [
-        {
-          id: 1,
-          text: "Test comment 1",
-          owner: "test-user",
-          updated_at: "2020-02-01 12:31:00",
-          created_at: "2020-01-01 12:34:56"
-        },
-        {
-          id: 2,
-          text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
-          owner: "test2",
-          created_at: "2020-01-01 12:34:56"
-        }
-      ]
-    },
-    answers: [
-      {
-        id: 1,
-        text:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
-        owner: "asdasd",
-        is_accepted: true,
-        comments: [
-          {
-            id: 1,
-            text: "Test comment 1",
-            owner: "test-user",
-            updated_at: "2020-02-01 12:31:00",
-            created_at: "2020-01-01 12:34:56"
-          },
-          {
-            id: 2,
-            text:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat eu dui vel dignissim. Donec ex nulla, convallis ut posuere in, tempor vitae augue. Sed non urna in est tempus ultrices ac vitae orci. Pellentesque in eleifend enim. Morbi bibendum vehicula est sit amet tempor. Praesent rutrum vel eros sed sagittis. Maecenas diam metus, dictum vel libero gravida, euismod vulputate turpis. Quisque molestie, mauris sed scelerisque ornare, mi justo sagittis sapien, ac vehicula magna nibh ac risus.",
-            owner: "test2",
-            created_at: "2020-01-01 12:34:56"
-          }
-        ]
-      },
-      {
-        id: 2,
-        text: "Short answer",
-        owner: "asdasd",
-        is_accepted: false
-      }
-    ]
-  };
+  let question = await fetchWrapper(`/api/v1/questions/${qid}`, req, res);
+  return {question: question};
 };
 
 export default QuestionPage;

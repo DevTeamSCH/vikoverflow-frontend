@@ -45,7 +45,7 @@ export default ({
       <div className="info-container">
         <div className="tags">
           {tags.map(t => (
-            <Tag key={t.id} {...t} />
+            <Tag key={t.id} name={t} />
           ))}
         </div>
         <span className="info">
