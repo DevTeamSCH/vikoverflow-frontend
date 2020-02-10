@@ -38,7 +38,7 @@ QuestionPage.getInitialProps = async ({ query, req, res }) => {
   const { qid } = query;
 
   let question = await fetchWrapper(`/api/v1/questions/${qid}`, req, res);
-  return {question: question};
+  return { question: question };
 };
 
 export default QuestionPage;
