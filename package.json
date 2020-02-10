@@ -15,27 +15,87 @@
     "react-feather": "^2.0.3"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-react": "^7.18.3",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "husky": "^4.2.1",
-    "lint-staged": "^10.0.4",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1"
   },
   "prettier": {
+    "useTabs": false,
+    "tabWidth": 2,
+    "printWidth": 80,
     "singleQuote": false,
-    "semi": true,
-    "jsxSingleQuote": false
+    "trailingComma": "none",
+    "jsxBracketSameLine": false,
+    "semi": false
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/react",
+      "plugin:react/recommended"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "rules": {
+      "no-underscore-dangle": "off",
+      "no-nested-ternary": "off",
+      "no-plusplus": "off",
+      "global-require": "warn",
+      "no-unused-vars": "warn",
+      "import/no-mutable-exports": "warn",
+      "prettier/prettier": "error",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "react/no-array-index-key": "off",
+      "react/no-unescaped-entities": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "react/jsx-props-no-spreading": "off"
+    }
+  },
+  "eslintIgnore": [
+    "**/node_modules/**/*",
+    "**/.next/**/*"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*{.js,css}": ["prettier --write"]
+    "*.{js,css,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
