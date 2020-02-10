@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import cn from "classnames";
+import { User } from "react-feather";
+
+import Link from "../link";
 import Logo from "../logo";
 import Button from "../button";
-import { User } from "react-feather";
 import Toggle from "./toggle";
 
 export default () => {
@@ -20,10 +22,12 @@ export default () => {
         <Logo />
         <nav className={cn({ active })}>
           <Toggle />
-          <Button small tertiary>
-            <User size={21} />
-            Belépés
-          </Button>
+          <Link underline={false} href="/api/v1/login/authsch">
+            <Button small tertiary>
+              <User size={21} />
+              Belépés
+            </Button>
+          </Link>
         </nav>
         <button
           onClick={() => toggleMenu()}
