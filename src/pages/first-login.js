@@ -5,6 +5,7 @@ import Button from "../components/button";
 import TextField from "../components/textfield";
 
 // TODO error handling
+// TODO redirect if user is logged in
 
 export default () => {
   const [text, setText] = useState("");
