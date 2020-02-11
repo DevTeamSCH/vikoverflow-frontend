@@ -9,11 +9,13 @@ export default ({
   compact,
   secondary,
   tertiary,
-  iconOnly
+  iconOnly,
+  ...rest
 }) => (
   <button
     onClick={onClick}
     className={cn({ small, compact, secondary, tertiary, iconOnly })}
+    {...rest}
   >
     {children}
     <style jsx>{`
