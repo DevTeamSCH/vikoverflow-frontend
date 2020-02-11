@@ -2,8 +2,9 @@ import { useState } from "react";
 import Router from "next/router";
 
 import Button from "../components/button";
-import TextArea from "../components/textarea";
 import TextField from "../components/textfield";
+
+// TODO error handling
 
 export default () => {
   const [text, setText] = useState("");
