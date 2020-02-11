@@ -5,7 +5,7 @@ import Button from "../button";
 import { User } from "react-feather";
 import Toggle from "./toggle";
 import { useRouter } from "next/router";
-import useAuth from "../../lib/auth-hook";
+import { useAuth } from "../../lib/auth-hook";
 
 export default () => {
   const [active, setActive] = useState(false);

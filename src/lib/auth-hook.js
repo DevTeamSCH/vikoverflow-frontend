@@ -1,19 +1,29 @@
 import fetch from "isomorphic-unfetch";
-import { useState } from "react";
-import absoluteUrl from "./absolute-url";
+import { useState, createContext, useContext, useEffect } from "react";
 
-function useAuth() {
+const userContext = createContext();
+
+export function ProvideAuth({ children }) {
+  const auth = useAuthProvider();
+  return <userContext.Provider value={auth}>{children}</userContext.Provider>;
+}
+
+export const useAuth = () => {
+  return useContext(userContext);
+};
+
+function useAuthProvider() {
   const [user, setUser] = useState(null);
 
-  fetch("/api/v1/accounts/me").then(res => {
-    if (res.ok) {
-      res.json().then(data => setUser(data));
-    } else {
-      console.log(res);
+  useEffect(() => {
+    async function fetchUser() {
+      fetch("/api/v1/accounts/me")
+        .then(res => res.json())
+        .then(user => setUser(user))
+        .catch(err => console.log(err));
     }
-  });
+    fetchUser();
+  }, []);
 
   return user;
 }
-
-export default useAuth;
