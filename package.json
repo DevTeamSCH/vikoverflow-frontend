@@ -25,6 +25,45 @@
     "lint-staged": "^10.0.4",
     "prettier": "^1.19.1"
   },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "prettier",
+      "prettier/react",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly",
+      "React": "writable"
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-hooks"
+    ],
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/react-in-jsx-scope": "off",
+      "react/display-name": "off",
+      "react/prop-types": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn"
+    }
+  },
   "prettier": {
     "singleQuote": false,
     "semi": true,
@@ -36,6 +75,7 @@
     }
   },
   "lint-staged": {
-    "*{.js,css}": ["prettier --write"]
+    "*.js": "eslint --fix",
+    "*{.js,css}": "prettier --write"
   }
 }

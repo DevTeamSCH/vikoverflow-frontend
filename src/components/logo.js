@@ -7,7 +7,7 @@ export default () => (
       span {
         font-weight: var(--font-weight-bold);
         font-size: 1.5rem;
-        letter-spacing: -0.015em;
+        letter-spacing: -0.03em;
         user-select: none;
         text-decoration: none;
         color: var(--fg);

@@ -3,7 +3,7 @@ import cn from "classnames";
 import Logo from "../logo";
 import Button from "../button";
 import { User } from "react-feather";
-import Toggle from "./toggle";
+import toggleDarkMode from "../../lib/toggle-dark-mode";
 
 export default () => {
   const [active, setActive] = useState(false);
@@ -19,9 +19,10 @@ export default () => {
       <div className="content">
         <Logo />
         <nav className={cn({ active })}>
-          <Toggle />
-          <Button small tertiary>
-            <User size={21} />
+          <Button small tertiary onClick={toggleDarkMode}>
+            darkmode
+          </Button>
+          <Button icon={<User />} small secondary>
             Belépés
           </Button>
         </nav>
@@ -40,6 +41,15 @@ export default () => {
           top: 0;
           position: sticky;
           background: var(--bg);
+        }
+
+        nav {
+          display: flex;
+          align-items: center;
+        }
+
+        nav > :global(* + *) {
+          margin-left: var(--gap);
         }
 
         .content {
@@ -93,6 +103,8 @@ export default () => {
         @media (max-width: 640px) {
           nav {
             display: none;
+            flex-direction: column;
+            align-items: flex-start;
             position: fixed;
             top: 0;
             bottom: 0;
@@ -103,8 +115,16 @@ export default () => {
             z-index: 2;
           }
 
-          .burger,
+          nav > :global(* + *) {
+            margin-left: 0;
+            margin-top: var(--gap);
+          }
+
           nav.active {
+            display: flex;
+          }
+
+          .burger {
             display: block;
           }
 

@@ -10,7 +10,7 @@ export default ({ external, href, children, className, underline = true }) => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={className}
+        className={cn(className, { underline })}
       >
         {children}
         <style jsx>{`
@@ -20,7 +20,7 @@ export default ({ external, href, children, className, underline = true }) => {
             color: var(--fg);
           }
 
-          a:hover {
+          a.underline:hover {
             text-decoration: underline;
           }
         `}</style>
