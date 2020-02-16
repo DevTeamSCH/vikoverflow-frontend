@@ -1,5 +1,5 @@
 import Button from "../button";
-import cn from "classnames";
+import cx from "clsx";
 import { ArrowDown, ArrowUp } from "react-feather";
 
 export const VOTE_STATE = {
@@ -14,7 +14,7 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
   const isDownvoted = value === VOTE_STATE.DOWN;
 
   return (
-    <div className={cn({ horizontal })}>
+    <div className={cx({ horizontal })}>
       <Button
         icon={<ArrowUp />}
         tertiary

@@ -1,5 +1,5 @@
 import { cloneElement } from "react";
-import cn from "classnames";
+import cx from "clsx";
 
 // TODO disabled state
 
@@ -15,7 +15,7 @@ export default ({
 }) => (
   <button
     onClick={onClick}
-    className={cn({
+    className={cx({
       small,
       compact,
       secondary,

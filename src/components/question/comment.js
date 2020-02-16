@@ -1,5 +1,5 @@
 import Vote from "./vote";
-import cn from "classnames";
+import cx from "clsx";
 import Link from "../link";
 
 // TODO refactor to css grid
@@ -16,7 +16,7 @@ export default ({
   user_vote,
   isParentAccepted
 }) => (
-  <div className={cn("container", { acceptedParent: isParentAccepted })}>
+  <div className={cx("container", { acceptedParent: isParentAccepted })}>
     <div className="comment-text">{text}</div>
     <div className="comment-meta">
       <div className="voting-container">

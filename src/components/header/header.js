@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import cn from "classnames";
+import cx from "clsx";
 import Logo from "../logo";
 import Button from "../button";
 import { User } from "react-feather";
@@ -18,7 +18,7 @@ export default () => {
     <header>
       <div className="content">
         <Logo />
-        <nav className={cn({ active })}>
+        <nav className={cx({ active })}>
           <Button small tertiary onClick={toggleDarkMode}>
             darkmode
           </Button>
@@ -28,7 +28,7 @@ export default () => {
         </nav>
         <button
           onClick={() => toggleMenu()}
-          className={cn("burger", { active })}
+          className={cx("burger", { active })}
         >
           <span className="line" />
           <span className="line" />
