@@ -32,7 +32,7 @@ export default ({
         justify-content: center;
         color: var(--bg);
         background: var(--fg);
-        padding: calc(0.875 * var(--gap)) var(--gap);
+        padding: calc(0.75 * var(--gap)) var(--gap);
         border: 0;
         font-size: inherit;
         font-weight: var(--font-weight-medium);

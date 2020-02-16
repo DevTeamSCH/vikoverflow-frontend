@@ -1,8 +1,6 @@
 import Link from "next/link";
 import cx from "clsx";
 
-// TODO throw error / propTypes if no href
-
 export default ({ external, href, children, className, underline = true }) => {
   if (external) {
     return (

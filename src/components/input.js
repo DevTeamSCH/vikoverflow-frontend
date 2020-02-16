@@ -9,7 +9,7 @@ export default ({ placeholder, value, onChange }) => {
           background: var(--accents-3);
           color: var(--fg);
           border: 2px solid var(--accents-3);
-          padding: calc(0.75 * var(--gap)) var(--gap);
+          padding: calc(0.75 * var(--gap) - 2px) calc(var(--gap) - 2px);
           font-size: inherit;
           transition: all var(--transition);
           flex: 1;
