@@ -40,7 +40,11 @@ export default ({
       <p className="text">{text}</p>
       <div className="info-container">
         <div className="info">
-          <Link href={`/users/${owner}`}>{owner}</Link>
+          {owner ? (
+            <Link href={`/users/${owner.id}`}>{owner.full_name}</Link>
+          ) : (
+            <span>Anonymous</span>
+          )}
           {` - 1970-01-01`}
         </div>
       </div>

@@ -11,7 +11,7 @@ export default ({
   id,
   title,
   text,
-  tags,
+  tags = [],
   owner,
   date,
   comments = [],
@@ -45,11 +45,15 @@ export default ({
       <div className="info-container">
         <div className="tags">
           {tags.map(t => (
-            <Tag key={t.id} {...t} />
+            <Tag key={t.id} name={t} />
           ))}
         </div>
         <span className="info">
-          <Link href={`/users/${owner}`}>{owner}</Link>
+          {owner ? (
+            <Link href={`/users/${owner.id}`}>{owner.full_name}</Link>
+          ) : (
+            <span>Anonymous</span>
+          )}
           {` - ${date}`}
         </span>
       </div>

@@ -4,11 +4,15 @@ import Logo from "../logo";
 import Button from "../button";
 import { User } from "react-feather";
 import toggleDarkMode from "../../lib/toggle-dark-mode";
+import { useRouter } from "next/router";
+import { useAuth } from "../../lib/auth-hook";
 
 export default () => {
   const [active, setActive] = useState(false);
   const toggleMenu = flag => setActive(flag ?? !active);
   const closeMenu = () => toggleMenu(false);
+  const router = useRouter();
+  const user = useAuth();
 
   useEffect(() => {
     document.body.style.overflow = active ? "hidden" : "auto";
@@ -22,9 +26,21 @@ export default () => {
           <Button small tertiary onClick={toggleDarkMode}>
             darkmode
           </Button>
-          <Button icon={<User />} small secondary>
-            Belépés
-          </Button>
+          {user ? (
+            <div>
+              <User size={21} />
+              {user["full_name"]}
+            </div>
+          ) : (
+            <Button
+              small
+              secondary
+              icon={<User />}
+              onClick={() => router.push("/api/v1/login/authsch")}
+            >
+              Belépés
+            </Button>
+          )}
         </nav>
         <button
           onClick={() => toggleMenu()}
