@@ -2,6 +2,7 @@ import Page from "../../components/page";
 import Question from "../../components/question";
 import Answer, { AnswerRow } from "../../components/answer";
 import fetchWrapper from "../../lib/fetch-wrapper";
+import api from "../../lib/api";
 
 // TODO pageTitle should be the title of the question (?) but definitely not plain
 
@@ -34,11 +35,10 @@ const QuestionPage = ({ question }) => {
   );
 };
 
-QuestionPage.getInitialProps = async ({ query, req, res }) => {
+QuestionPage.getInitialProps = async ({ query }) => {
   const { qid } = query;
-
-  let question = await fetchWrapper(`/api/v1/questions/${qid}`, req, res);
-  return { question: question };
+  const question = await api.get(`/api/v1/questions/${qid}`);
+  return { question };
 };
 
 export default QuestionPage;
