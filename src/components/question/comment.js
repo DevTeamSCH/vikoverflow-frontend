@@ -23,7 +23,11 @@ export default ({
         <Vote horizontal count={32} />
       </div>
       <div className="meta-text">
-        <Link href={`/users/${owner}`}>{owner}</Link>
+        {owner ? (
+          <Link href={`/users/${owner.id}`}>{owner.full_name}</Link>
+        ) : (
+          <span>Anonymous</span>
+        )}
         {" - "}
         {updated_at ? (
           <>

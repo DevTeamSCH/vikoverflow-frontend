@@ -4,11 +4,15 @@ import Logo from "../logo";
 import Button from "../button";
 import { User } from "react-feather";
 import Toggle from "./toggle";
+import { useRouter } from "next/router";
+import { useAuth } from "../../lib/auth-hook";
 
 export default () => {
   const [active, setActive] = useState(false);
   const toggleMenu = flag => setActive(flag ?? !active);
   const closeMenu = () => toggleMenu(false);
+  const router = useRouter();
+  const user = useAuth();
 
   useEffect(() => {
     document.body.style.overflow = active ? "hidden" : "auto";
@@ -20,10 +24,21 @@ export default () => {
         <Logo />
         <nav className={cn({ active })}>
           <Toggle />
-          <Button small tertiary>
-            <User size={21} />
-            Belépés
-          </Button>
+          {user ? (
+            <div>
+              <User size={21} />
+              {user["full_name"]}
+            </div>
+          ) : (
+            <Button
+              small
+              tertiary
+              onClick={() => router.push("/api/v1/login/authsch")}
+            >
+              <User size={21} />
+              Belépés
+            </Button>
+          )}
         </nav>
         <button
           onClick={() => toggleMenu()}
