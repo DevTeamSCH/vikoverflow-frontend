@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import cn from "classnames";
+import cx from "clsx";
 import Logo from "../logo";
 import Button from "../button";
 import { User } from "react-feather";
-import Toggle from "./toggle";
+import toggleDarkMode from "../../lib/toggle-dark-mode";
 import { useRouter } from "next/router";
 import { useAuth } from "../../lib/auth-hook";
 
@@ -22,8 +22,10 @@ export default () => {
     <header>
       <div className="content">
         <Logo />
-        <nav className={cn({ active })}>
-          <Toggle />
+        <nav className={cx({ active })}>
+          <Button small tertiary onClick={toggleDarkMode}>
+            darkmode
+          </Button>
           {user ? (
             <div>
               <User size={21} />
@@ -32,17 +34,17 @@ export default () => {
           ) : (
             <Button
               small
-              tertiary
+              secondary
+              icon={<User />}
               onClick={() => router.push("/api/v1/login/authsch")}
             >
-              <User size={21} />
               Belépés
             </Button>
           )}
         </nav>
         <button
           onClick={() => toggleMenu()}
-          className={cn("burger", { active })}
+          className={cx("burger", { active })}
         >
           <span className="line" />
           <span className="line" />
@@ -55,6 +57,15 @@ export default () => {
           top: 0;
           position: sticky;
           background: var(--bg);
+        }
+
+        nav {
+          display: flex;
+          align-items: center;
+        }
+
+        nav > :global(* + *) {
+          margin-left: var(--gap);
         }
 
         .content {
@@ -108,6 +119,8 @@ export default () => {
         @media (max-width: 640px) {
           nav {
             display: none;
+            flex-direction: column;
+            align-items: flex-start;
             position: fixed;
             top: 0;
             bottom: 0;
@@ -118,8 +131,16 @@ export default () => {
             z-index: 2;
           }
 
-          .burger,
+          nav > :global(* + *) {
+            margin-left: 0;
+            margin-top: var(--gap);
+          }
+
           nav.active {
+            display: flex;
+          }
+
+          .burger {
             display: block;
           }
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import cn from "classnames";
+import cx from "clsx";
 import { Check } from "react-feather";
 import Link from "../link";
 
@@ -23,7 +23,7 @@ export default ({
 
   return (
     <div
-      className={cn("container", {
+      className={cx("container", {
         hasComment: comments.length > 0,
         isAccepted: is_accepted
       })}

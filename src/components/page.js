@@ -2,7 +2,13 @@ import Head from "next/head";
 import Header from "./header";
 import Footer from "./footer";
 
-export default ({ children, header = true, footer = false, pageTitle }) => (
+export default ({
+  children,
+  header = true,
+  footer = false,
+  pageTitle,
+  wide
+}) => (
   <div>
     <Head>
       <title>{pageTitle ? `${pageTitle} · vikoverflow` : "vikoverflow"}</title>
@@ -15,7 +21,7 @@ export default ({ children, header = true, footer = false, pageTitle }) => (
     <style jsx>{`
       main {
         padding: 0 1rem 8rem;
-        width: var(--main-content);
+        width: ${wide ? "900px" : "var(--main-content)"};
         max-width: 100%;
         margin: 0 auto;
       }

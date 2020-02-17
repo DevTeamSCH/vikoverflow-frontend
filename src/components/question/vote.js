@@ -1,8 +1,6 @@
 import Button from "../button";
-import cn from "classnames";
+import cx from "clsx";
 import { ArrowDown, ArrowUp } from "react-feather";
-
-// TODO color
 
 export const VOTE_STATE = {
   UP: "up",
@@ -11,37 +9,29 @@ export const VOTE_STATE = {
 };
 
 export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
-  const arrowSize = horizontal ? 15 : 21;
+  // TODO show state in some way
   const isUpvoted = value === VOTE_STATE.UP;
   const isDownvoted = value === VOTE_STATE.DOWN;
 
   return (
-    <div className={cn({ horizontal })}>
+    <div className={cx({ horizontal })}>
       <Button
-        iconOnly
+        icon={<ArrowUp />}
         tertiary
         small={!horizontal}
+        smallIcon={horizontal}
         compact={horizontal}
         onClick={onUpvote}
-      >
-        <ArrowUp
-          size={arrowSize}
-          color={isUpvoted ? "var(--green)" : "var(--fg)"}
-        />
-      </Button>
-      <span>{count}</span>
+      />
+      <span className="count">{count}</span>
       <Button
-        iconOnly
+        icon={<ArrowDown />}
         tertiary
         small={!horizontal}
+        smallIcon={horizontal}
         compact={horizontal}
         onClick={onDownvote}
-      >
-        <ArrowDown
-          size={arrowSize}
-          color={isDownvoted ? "var(--red)" : "var(--fg)"}
-        />
-      </Button>
+      />
 
       <style jsx>{`
         div {
@@ -62,7 +52,7 @@ export default ({ horizontal, value, onUpvote, onDownvote, count }) => {
           margin-left: var(--gap-half);
         }
 
-        span {
+        .count {
           display: flex;
           align-items: center;
           /* Matches vote buttons */

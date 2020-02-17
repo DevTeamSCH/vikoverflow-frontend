@@ -1,5 +1,5 @@
 import { useState } from "react";
-import cn from "classnames";
+import cx from "clsx";
 import Tag from "./tag";
 import Comment from "./comment";
 import Vote, { VOTE_STATE as VOTE } from "./vote";
@@ -25,7 +25,7 @@ export default ({
 
   return (
     <div
-      className={cn("container", {
+      className={cx("container", {
         hasComment: comments.length > 0,
         isListItem: !text
       })}

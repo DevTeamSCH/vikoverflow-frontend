@@ -1,4 +1,5 @@
-import cn from "classnames";
+import { cloneElement } from "react";
+import cx from "clsx";
 
 // TODO disabled state
 
@@ -9,12 +10,20 @@ export default ({
   compact,
   secondary,
   tertiary,
-  iconOnly
+  icon,
+  smallIcon
 }) => (
   <button
     onClick={onClick}
-    className={cn({ small, compact, secondary, tertiary, iconOnly })}
+    className={cx({
+      small,
+      compact,
+      secondary,
+      tertiary,
+      iconOnly: icon && !children
+    })}
   >
+    {icon && cloneElement(icon, { size: smallIcon ? 15 : 21 })}
     {children}
     <style jsx>{`
       button {

@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cx from "clsx";
 import { Check } from "react-feather";
 
 // TODO disabled state
@@ -6,7 +6,7 @@ import { Check } from "react-feather";
 export default ({ checked, onChange, children }) => (
   <label>
     <input checked={checked} onChange={onChange} type="checkbox" />
-    <span className={cn("check", { checked })}>
+    <span className={cx("check", { checked })}>
       <Check strokeWidth={4} />
     </span>
     <div className="text">{children}</div>

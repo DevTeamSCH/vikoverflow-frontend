@@ -1,5 +1,5 @@
 import Link from "next/link";
-import cn from "classnames";
+import cx from "clsx";
 
 // TODO throw error / propTypes if no href
 
@@ -10,7 +10,7 @@ export default ({ external, href, children, className, underline = true }) => {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={className}
+        className={cx(className, { underline })}
       >
         {children}
         <style jsx>{`
@@ -20,7 +20,7 @@ export default ({ external, href, children, className, underline = true }) => {
             color: var(--fg);
           }
 
-          a:hover {
+          a.underline:hover {
             text-decoration: underline;
           }
         `}</style>
@@ -30,7 +30,7 @@ export default ({ external, href, children, className, underline = true }) => {
 
   return (
     <Link href={href}>
-      <a className={cn(className, { underline })}>
+      <a className={cx(className, { underline })}>
         {children}
         <style jsx>{`
           a {
