@@ -87,7 +87,7 @@ export default () => {
           padding: 0;
           border: 0;
           background: none;
-          z-index: 3;
+          z-index: 5;
         }
 
         .burger:focus {
@@ -128,7 +128,7 @@ export default () => {
             right: 0;
             background: var(--bg);
             padding: calc(6 * var(--gap)) var(--gap) 0;
-            z-index: 2;
+            z-index: 4;
           }
 
           nav > :global(* + *) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import cx from "clsx";
-import Tag from "./tag";
+import Tag from "../tag";
 import Comment from "./comment";
 import Vote, { VOTE_STATE as VOTE } from "./vote";
 import Link from "../link";
@@ -112,10 +112,6 @@ export default ({
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-        }
-
-        .tags > :global(*:not(:first-child)) {
-          margin-left: var(--gap-half);
         }
 
         .info {

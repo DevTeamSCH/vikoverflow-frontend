@@ -1,9 +1,14 @@
 // TODO disabled state
 
-export default ({ placeholder, value, onChange }) => {
+export default ({ placeholder, value, onChange, className }) => {
   return (
     <>
-      <input placeholder={placeholder} value={value} onChange={onChange} />
+      <input
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        className={className}
+      />
       <style jsx>{`
         input {
           background: var(--accents-3);
@@ -23,7 +28,7 @@ export default ({ placeholder, value, onChange }) => {
 
         input:focus {
           outline: 0;
-          border-color: var(--fg);
+          border-color: var(--accents-2);
         }
       `}</style>
     </>

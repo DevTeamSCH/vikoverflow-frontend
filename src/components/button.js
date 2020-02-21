@@ -11,17 +11,21 @@ export default ({
   secondary,
   tertiary,
   icon,
-  smallIcon
+  smallIcon,
+  className
 }) => (
   <button
     onClick={onClick}
-    className={cx({
-      small,
-      compact,
-      secondary,
-      tertiary,
-      iconOnly: icon && !children
-    })}
+    className={cx(
+      {
+        small,
+        compact,
+        secondary,
+        tertiary,
+        iconOnly: icon && !children
+      },
+      className
+    )}
   >
     {icon && cloneElement(icon, { size: smallIcon ? 15 : 21 })}
     {children}
