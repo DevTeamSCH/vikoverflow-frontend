@@ -7,14 +7,12 @@ import Popover, { Menu, Item } from "../components/popover";
 import Tag, { Row as TagRow } from "../components/tag";
 
 const debugTags = [
-  { id: 1, name: "tag1" },
-  { id: 2, name: "tag2" },
-  { id: 2, name: "tag2" }
+  { id: 1, name: "targykod" },
+  { id: 2, name: "valami" },
+  { id: 3, name: "tag3" }
 ];
 
 export default () => {
-  const [popoverOpen, setPopoverOpen] = useState(false);
-  const [showTagInput, setShowTagInput] = useState(false);
   const [tags, setTags] = useState([]);
 
   return (
@@ -23,49 +21,39 @@ export default () => {
         <Input placeholder="Title..." />
         <Textarea placeholder="Lorem ipsum..." />
         <div className="actions">
-          {tags?.length && (
-            <TagRow className="tag-row">
-              {tags.map((t, i) => (
-                <Tag key={i} {...t} />
-              ))}
-            </TagRow>
-          )}
-          {showTagInput ? (
-            <div className="popover-container">
-              <Popover
-                open={popoverOpen}
-                onOpen={() => setPopoverOpen(true)}
-                onClose={() => setPopoverOpen(false)}
-                trigger={
-                  <Input className="tag-input" placeholder="Search tags.." />
-                }
-              >
-                <Menu>
-                  {debugTags.map((t, i) => (
+          <div className="popover-container">
+            <Popover trigger={<Button secondary>Add tags</Button>}>
+              <Menu>
+                <Item>
+                  <input placeholder="Search tags.." />
+                </Item>
+                {debugTags
+                  .filter(t => !tags.includes(t))
+                  .map((t, i) => (
                     <Item
                       key={i}
                       onClick={() => {
                         setTags([...tags, t]);
-                        setPopoverOpen(false);
                       }}
                     >
                       {t.name}
                     </Item>
                   ))}
-                </Menu>
-              </Popover>
-              <Button
-                tertiary
-                className="done-button"
-                onClick={() => setShowTagInput(false)}
-              >
-                Done
-              </Button>
-            </div>
-          ) : (
-            <Button secondary onClick={() => setShowTagInput(true)}>
-              Add tags
-            </Button>
+              </Menu>
+            </Popover>
+          </div>
+
+          {tags?.length > 0 && (
+            <TagRow className="tag-row">
+              {tags.map((t, i) => (
+                <Tag
+                  deletable
+                  onDelete={() => setTags(tags.filter(_t => _t.id !== t.id))}
+                  key={i}
+                  {...t}
+                />
+              ))}
+            </TagRow>
           )}
 
           <Button>Küldés</Button>
@@ -90,15 +78,7 @@ export default () => {
         }
 
         .actions :global(.tag-row) {
-          margin-right: var(--gap);
-        }
-
-        .container :global(.tag-input) {
-          width: 200px;
-        }
-
-        .container :global(.tag-input):focus {
-          border-color: var(--accents-2);
+          margin-left: var(--gap);
         }
 
         .popover-container {
@@ -106,8 +86,16 @@ export default () => {
           flex-direction: row;
         }
 
-        .popover-container > :global(.done-button) {
-          margin-left: var(--gap-half);
+        input {
+          font: inherit;
+          color: inherit;
+          border: 0;
+          background: transparent;
+        }
+
+        input:focus,
+        input:active {
+          outline: 0;
         }
       `}</style>
     </Page>

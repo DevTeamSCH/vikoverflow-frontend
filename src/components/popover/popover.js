@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import cx from "clsx";
 
-// TODO trigger  item should stay active
+export default ({ trigger, children }) => {
+  const [open, setOpen] = useState(false);
 
-export default ({ trigger, children, open, onOpen, onClose }) => {
+  const toggle = () => setOpen(!open);
+
   const handleKeyDown = e => {
     if (e.key === "Escape") {
-      onClose();
+      setOpen(false);
     }
   };
 
@@ -20,9 +22,9 @@ export default ({ trigger, children, open, onOpen, onClose }) => {
 
   return (
     <div className={cx("popover", { open })}>
-      <div onClick={onClose} className="click-away" />
+      <div onClick={() => setOpen(false)} className="click-away" />
 
-      <div onClick={onOpen} className="trigger">
+      <div onClick={toggle} className="trigger">
         {trigger}
       </div>
 

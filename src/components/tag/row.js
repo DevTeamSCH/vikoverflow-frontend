@@ -5,8 +5,9 @@ export default ({ children, className }) => (
       div {
         display: flex;
         align-items: center;
+        overflow-x: scroll;
       }
-      div :global(*:not(:first-child)) {
+      div > :global(*:not(:first-child)) {
         margin-left: var(--gap-half);
       }
     `}</style>

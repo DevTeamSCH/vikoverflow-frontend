@@ -8,7 +8,8 @@ export default ({ children, onClick }) => (
         transition: all var(--transition);
       }
 
-      div:hover {
+      div:hover,
+      div:focus-within {
         background: var(--accents-3);
       }
 

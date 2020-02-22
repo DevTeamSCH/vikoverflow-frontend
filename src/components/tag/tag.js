@@ -1,25 +1,47 @@
 import Link from "next/link";
+import { X } from "react-feather";
 
-export default ({ id, name }) => (
-  <Link href={`/tags/${id}`}>
-    <a>
-      {name}
-      <style jsx>{`
-        a {
-          font-size: 0.75rem;
-          padding: calc(1 / 2 * var(--gap-half)) var(--gap-half);
-          background: var(--accents-3);
-          user-select: none;
-          cursor: pointer;
-          transition: all var(--transition);
-          text-decoration: none;
-          color: var(--fg);
-        }
+export default ({ id, name, deletable = false, onDelete }) => (
+  <div>
+    <Link href={`/tags/${id}`}>
+      <span className="link">{name}</span>
+    </Link>
+    {deletable && (
+      <span className="cross" onClick={onDelete}>
+        <X size={14} />
+      </span>
+    )}
 
-        a:hover {
-          background: var(--accents-2);
-        }
-      `}</style>
-    </a>
-  </Link>
+    <style jsx>{`
+      div {
+        display: grid;
+        color: var(--fg);
+        user-select: none;
+        font-size: 0.75rem;
+        grid-auto-flow: column;
+        grid-gap: 2px;
+      }
+
+      .link {
+        padding: calc(1 / 2 * var(--gap-half)) var(--gap-half);
+      }
+
+      .link,
+      .cross {
+        background: var(--accents-3);
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .link:hover,
+      .cross:hover {
+        background: var(--accents-2);
+      }
+
+      .cross {
+        padding: 0 calc(1 / 2 * var(--gap-half));
+      }
+    `}</style>
+  </div>
 );
